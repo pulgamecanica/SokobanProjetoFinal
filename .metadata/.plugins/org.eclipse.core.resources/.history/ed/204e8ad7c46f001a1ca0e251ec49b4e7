@@ -1,0 +1,10 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+public class SmallStoneKeyWord implements KeyWords {
+
+	@Override
+	public String getTheElementKey() {
+		return "p";
+	}
+
+}

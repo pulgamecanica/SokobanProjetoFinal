@@ -1,0 +1,15 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+public class ParedeKeyWord implements KeyWords {
+
+	@Override
+	public String getTheElementKey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getTheElementKey() {
+		return "#";
+	}
+}

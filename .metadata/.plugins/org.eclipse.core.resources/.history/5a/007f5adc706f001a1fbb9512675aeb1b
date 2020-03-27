@@ -1,0 +1,12 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+import pt.iul.ista.poo.gui.ImageTile;
+
+public interface ElementKey extends ImageTile {
+	String getTheElementKey();
+	String getTheImageName();
+	boolean canMove();
+	boolean canStepOn();
+	ImageTile getImage();
+	
+}

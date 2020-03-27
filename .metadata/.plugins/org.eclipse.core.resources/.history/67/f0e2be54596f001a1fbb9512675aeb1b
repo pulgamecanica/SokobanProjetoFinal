@@ -1,0 +1,26 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Point2D;
+
+public class Parede implements ImageTile {
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Point2D getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getLayer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

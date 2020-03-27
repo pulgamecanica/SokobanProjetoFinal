@@ -1,0 +1,10 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+public class AlvoKeyWord implements KeyWords {
+
+	@Override
+	public String getTheElementKey() {
+		return "X";
+	}
+
+}
