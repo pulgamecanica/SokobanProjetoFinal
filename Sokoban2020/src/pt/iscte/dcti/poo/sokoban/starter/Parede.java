@@ -1,5 +1,6 @@
 package pt.iscte.dcti.poo.sokoban.starter;
 
+import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Point2D;
 
@@ -42,8 +43,29 @@ public class Parede implements ImageTile, ElementKey {
 		return this;
 	}
 
+	
 	@Override
-	public void updateElement(Point2D point) {
-		return;
+	public void objectIsOnTheHole() {
+		ImageMatrixGUI.getInstance().removeImage(this);;
 	}
+	@Override
+	public void updateElementUP() {
+		
+	}
+
+	@Override
+	public void updateElementDOWN() {
+		
+	}
+
+	@Override
+	public void updateElementRIGHT() {
+		
+	}
+
+	@Override
+	public void updateElementLEFT() {
+
+	}
+
 }

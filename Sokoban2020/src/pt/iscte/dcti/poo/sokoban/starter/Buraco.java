@@ -33,10 +33,6 @@ public class Buraco implements ElementKey, ImageTile {
 	public boolean canMove() {
 		return true;
 	}
-	//ADD TO INTERFACE IMPORTANT
-	public void setBigStoneInside() {
-		bigStoneInside = true;
-	}
 	
 	@Override
 	public boolean canStepOn() {
@@ -50,9 +46,38 @@ public class Buraco implements ElementKey, ImageTile {
 		return this;
 	}
 
+	public void restartLevel() {
+		ImageMatrixGUI.getInstance().clearImages();
+		ImageMatrixGUI.setSize(10, 10);
+		SokobanGame s = new SokobanGame(level);
+		ImageMatrixGUI.getInstance().registerObserver(s);
+		ImageMatrixGUI.getInstance().go();
+	}
+	
 	@Override
-	public void updateElement(Point2D point) {
-		ImageMatrixGUI.getInstance().dispose();
+	public void objectIsOnTheHole() {
+		System.out.println("Im HERE :D Buraco");
+		
+	}
+	@Override
+	public void updateElementUP() {
+		if (bigStoneInside) 
+			restartLevel();
+	}
+	@Override
+	public void updateElementDOWN() {
+		if (bigStoneInside) 
+			restartLevel();
+	}
+	@Override
+	public void updateElementRIGHT() {
+		if (bigStoneInside) 
+			restartLevel();
+	}
+	@Override
+	public void updateElementLEFT() {
+		if (bigStoneInside) 
+			restartLevel();
 	}
 
 }

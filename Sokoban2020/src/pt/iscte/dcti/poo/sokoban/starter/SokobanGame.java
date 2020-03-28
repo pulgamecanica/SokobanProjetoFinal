@@ -18,16 +18,26 @@ public class SokobanGame implements Observer {
 	private Player player; 
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
 	
-	public SokobanGame(){
+
+	
+	public SokobanGame(int level){
 		
 		//ArrayList<ImageTile> tiles = buildSampleLevel(0);
-		ArrayList<ImageTile> tiles = buildRealLevel(4);
+		ArrayList<ImageTile> tiles = buildRealLevel(level);
 		tiles.add(player);
 		player.setElementsInTheMap(elementsInTheMap);
+		player.addTargets(getTargetsInTheMap());
 		ImageMatrixGUI.getInstance().addImages(tiles);
+		//Get all Alvos.
 		
 	}
-	
+	public int getTargetsInTheMap() {
+		int targets = 0;
+		for(ElementKey x: elementsInTheMap)
+			if (x.getName().equals("Alvo"))
+				targets++;
+		return targets;
+	}
 	private ArrayList<ImageTile> buildSampleLevel(int level){
 		
 		ArrayList<ImageTile> sampleLevelTiles = new ArrayList<ImageTile>();
@@ -132,5 +142,11 @@ public class SokobanGame implements Observer {
 				player.move();
 			ImageMatrixGUI.getInstance().update();
 		}
+//		int counter = 0;
+//		for(ImageTile x: elementsInTheMap) {
+//			counter++;
+//			System.out.println(counter + " This is: " + x.getName() + " At the position X: " + x.getPosition().getX() + ", Y: " + x.getPosition().getY());
+//		}
 	}
+
 }

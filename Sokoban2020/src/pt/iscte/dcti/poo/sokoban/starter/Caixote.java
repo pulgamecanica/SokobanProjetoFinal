@@ -8,6 +8,8 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Caixote implements ElementKey, ImageTile {
 	private Point2D Point2D;
 	private int level;
+	private boolean canStepOn = false;
+	private boolean canMove = true;
 	
 	
 	public Caixote(Point2D point2D, int level){
@@ -31,26 +33,48 @@ public class Caixote implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canMove() {
-		return true;
+		return canMove;
 	}
 
 	@Override
 	public boolean canStepOn() {
-		return false;
+		return canStepOn;
 	}
 
 	@Override
 	public ImageTile getImage() {
 		return this;
 	}
-	public void updatePosition(Point2D point) {
-		Point2D = point;
-	}
-	
+
 	@Override
-	public void updateElement(Point2D point) {
-		System.out.println("Im here");
-			Point2D = point;
+	public void objectIsOnTheHole() {
+		System.out.println("Im HERE :D Caixote");
+		ImageMatrixGUI.getInstance().removeImage(this);
+		canStepOn = true;
+		canMove = false;
 	}
+	@Override
+	public void updateElementUP() {
+		Point2D p = new Point2D(Point2D.getX(), Point2D.getY() - 1);
+		Point2D = p;
+	}
+
+	@Override
+	public void updateElementDOWN() {
+		Point2D = new Point2D(Point2D.getX(), Point2D.getY() + 1);
+		
+	}
+
+	@Override
+	public void updateElementRIGHT() {
+		Point2D = new Point2D(Point2D.getX() + 1, Point2D.getY());
+	}
+
+	@Override
+	public void updateElementLEFT() {
+		Point2D = new Point2D(Point2D.getX() - 1, Point2D.getY());
+		
+	}
+
 
 }

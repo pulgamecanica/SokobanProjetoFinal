@@ -28,7 +28,7 @@ public class Alvo implements ImageTile, ElementKey {
 
 	@Override
 	public boolean canMove() {
-		return false;
+		return true;
 	}
 	@Override
 	public boolean canStepOn() {
@@ -38,9 +38,32 @@ public class Alvo implements ImageTile, ElementKey {
 	public ImageTile getImage() {
 		return this;
 	}
+
+//	@Override
+//	public void setSurfaceUnderneath() {
+//
+//	}
+//	
 	@Override
-	public void updateElement(Point2D point) {
+	public void updateElementUP() {
 		return;
+	}
+	@Override
+	public void updateElementDOWN() {
+		return;
+	}
+	@Override
+	public void updateElementRIGHT() {
+		return;
+	}
+	@Override
+	public void updateElementLEFT() {
+		return;
+	}
+	@Override
+	public void objectIsOnTheHole() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

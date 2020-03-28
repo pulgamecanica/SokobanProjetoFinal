@@ -43,10 +43,32 @@ public class Bateria implements ElementKey, ImageTile {
 	public ImageTile getImage() {
 		return this;
 	}
+	
+//	@Override
+//	public void setSurfaceUnderneath() {
+//		ImageMatrixGUI.getInstance().removeImage(this);;
+//	}
+	
 	@Override
-	public void updateElement(Point2D point) {
-		//Chao c = new Chao(this.getPosition(), level);
-		ImageMatrixGUI.getInstance().update();
+	public void updateElementUP() {
+		ImageMatrixGUI.getInstance().removeImage(this);;
+	}
+	@Override
+	public void updateElementDOWN() {
+		ImageMatrixGUI.getInstance().removeImage(this);;
+	}
+	@Override
+	public void updateElementRIGHT() {
+		ImageMatrixGUI.getInstance().removeImage(this);;
+	}
+	@Override
+	public void updateElementLEFT() {
+		ImageMatrixGUI.getInstance().removeImage(this);;
+	}
+	@Override
+	public void objectIsOnTheHole() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
