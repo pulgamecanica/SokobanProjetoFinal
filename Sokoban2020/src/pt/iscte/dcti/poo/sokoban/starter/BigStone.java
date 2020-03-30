@@ -9,6 +9,7 @@ public class BigStone implements ElementKey, ImageTile {
 	private Point2D Point2D;
 	private int level;
 	private boolean canStepHere = false;
+	private String name = "BigStone";
 
 	public BigStone(Point2D Point2D, int level){
 		this.Point2D = Point2D;
@@ -17,7 +18,7 @@ public class BigStone implements ElementKey, ImageTile {
 	
 	@Override
 	public String getName() {
-		return "BigStone";
+		return name;
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public int getLayer() {
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -37,7 +38,6 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canStepOn() {
-		//BIGSTONEACTIVATED
 		return canStepHere;
 	}
 
@@ -76,8 +76,12 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public int level() {
-		// TODO Auto-generated method stub
 		return level;
+	}
+
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		return false;
 	}
 
 }

@@ -16,25 +16,23 @@ public class Player implements ImageTile, ElementKey{
 	private String imageName;
 	private int level;
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
-	private int moves = 20;
-	private int targets;
+	private int moves = 100;
 	private SokobanGame game;
+	private int movesDone = 0;
+
 	
 	public Player(Point2D initialPosition, int level){
 		position = initialPosition;
 		imageName = "Empilhadora_D";
 		this.level = level;
 	}
+	
 	public void addGame(SokobanGame game) {
 		this.game = game;
 	}
 	
 	public void setElementsInTheMap(ArrayList<ElementKey> elementsInTheMap) {
 		this.elementsInTheMap = elementsInTheMap;
-	}
-
-	public void addTargets(int targets) {
-		this.targets += targets;
 	}
 	
 	@Override
@@ -67,6 +65,45 @@ public class Player implements ImageTile, ElementKey{
 		return this;
 	}
 	
+	@Override
+	public void objectIsOnTheHole() {
+	
+	}
+
+	@Override
+	public void updateElementUP(Player p) {
+		
+	}
+
+	@Override
+	public void updateElementDOWN(Player p) {
+		
+	}
+
+	@Override
+	public void updateElementRIGHT(Player p) {
+
+	}
+
+	@Override
+	public void updateElementLEFT(Player p) {
+		
+	}
+
+	@Override
+	public int level() {
+		return level;
+	}
+	
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		return false;
+	}
+	
+	public int movesDone() {
+		return movesDone;
+	}
+	
 	public void gotTheBatrty() {
 		moves = 100;
 	}
@@ -76,19 +113,26 @@ public class Player implements ImageTile, ElementKey{
 	}
 	
 	public void restartLevel() {
-		game.advnceToNextLevel(level);
+		if (moves == -1) {
+			game.advnceToNextLevel(level);
+		}
 	}
+	
 	public void buracoHere(Point2D newPosition, ElementKey object) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) 
 			for(ElementKey x: elementsInTheMap) {
-				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && x.getImage().getName().equals("Buraco")) {
+				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && x.getImage().getName().equals("Buraco") && !x.canPlayerStepInsideHole()) {
 					object.objectIsOnTheHole();
+				}
+				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && x.getImage().getName().equals("Buraco") && object.getName().equals("BigStone")) {
+					x.objectIsOnTheHole();
 				}
 					
 			}
 	}
-	public boolean moveCheck(Point2D newPosition) {
-		ImageMatrixGUI.getInstance().setStatusMessage("Moves Left: "+ moves + "Targets Done!: " + targets);
+	
+	private boolean moveCheck(Point2D newPosition) {
+		ImageMatrixGUI.getInstance().setStatusMessage("Level: " + (level+1) + " Moves: " + movesDone() + " Energy: "+ (double)moves + "%" + " BestScore: ::::::" + "           'r'-->RESTART 'n'-->NEXTLEVEL 'l'-->QUITGAME");
 		ImageMatrixGUI.getInstance().setName("Level: "+ level);
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) {
 			for(ElementKey x: elementsInTheMap) {
@@ -96,21 +140,13 @@ public class Player implements ImageTile, ElementKey{
 					ImageMatrixGUI.getInstance().setStatusMessage("Something is on your Way!");
 					return false;
 				}	
+				if(x.getName().equals("Bateria"))
+					gotTheBatrty();
 			}
-		}
-		if (targets == 0) {
-			//ImageMatrixGUI.setSize(10, 10);
-			//ImageMatrixGUI.setSize(20, 20);
-			SokobanGame s = new SokobanGame(level + 1);
-			//ImageMatrixGUI.getInstance().go();
-		}
-			
-		if (moves == 0) {
-			//SokobanGame s = new SokobanGame(level);
-			ImageMatrixGUI.getInstance().dispose();
-		}
+		}	
 		return true;
 	}
+	
 
 	public void moveUp() {
 		Point2D newPosition = new Point2D(position.getX(), position.getY() - 1);
@@ -122,12 +158,15 @@ public class Player implements ImageTile, ElementKey{
 			}
 		}
 		ImageMatrixGUI.getInstance().update();
+		//Move Player
 		if (moveCheck(newPosition)) {
 			moves--;
+			movesDone++;
 			position = newPosition;
 		}
 		setName("Empilhadora_U");
 		ImageMatrixGUI.getInstance().update();
+		restartLevel();
 	}
 	public void moveDown() {
 		Point2D newPosition = new Point2D(position.getX(), position.getY() + 1);
@@ -142,9 +181,11 @@ public class Player implements ImageTile, ElementKey{
 		if (moveCheck(newPosition)) {
 			position = newPosition;
 			moves--;
+			movesDone++;
 		}
 		setName("Empilhadora_D");
 		ImageMatrixGUI.getInstance().update();
+		restartLevel();
 	}
 	public void moveLeft() {
 		Point2D newPosition = new Point2D(position.getX() - 1, position.getY());
@@ -159,9 +200,11 @@ public class Player implements ImageTile, ElementKey{
 		if (moveCheck(newPosition)) {
 			moves--;
 			position = newPosition;
+			movesDone++;
 		}
 		setName("Empilhadora_L");
 		ImageMatrixGUI.getInstance().update();
+		restartLevel();
 	}
 	public void moveRight() {
 		Point2D newPosition = new Point2D(position.getX() + 1, position.getY());
@@ -175,16 +218,16 @@ public class Player implements ImageTile, ElementKey{
 		ImageMatrixGUI.getInstance().update();
 		if (moveCheck(newPosition)) {
 			moves--;
+			movesDone++;
 			position = newPosition;
 		}
 		setName("Empilhadora_R");
 		ImageMatrixGUI.getInstance().update();
+		restartLevel();
 	}
 	
 	public void move() {
-		
 		Direction randomDirection = Direction.UP;
-
 		Point2D newPosition = position.plus(randomDirection.asVector());
 		if (newPosition.getX()>=0 && newPosition.getX()<10 && newPosition.getY()>=0 && newPosition.getY()<10 ){
 			position = newPosition;
@@ -192,40 +235,4 @@ public class Player implements ImageTile, ElementKey{
 		ImageMatrixGUI.getInstance().update();
 	}
 	
-	
-	@Override
-	public void objectIsOnTheHole() {
-		System.out.println("Im HERE :D Player");
-		ImageMatrixGUI.getInstance().removeImage(this);;
-	}
-
-	@Override
-	public void updateElementUP(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateElementDOWN(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateElementRIGHT(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateElementLEFT(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int level() {
-		return level;
-	}
-
 }

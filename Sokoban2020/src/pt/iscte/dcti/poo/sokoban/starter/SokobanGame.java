@@ -14,20 +14,24 @@ import pt.iul.ista.poo.observer.Observer;
 import pt.iul.ista.poo.utils.Point2D;
 
 public class SokobanGame implements Observer {
- 	
+ 	//Attributes
 	private Player player; 
+	
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
+	
 	private ArrayList<Point2D> alvos = new ArrayList<>(); 
+	
 	private ArrayList<ImageTile> caixas = new ArrayList<>(); 
+	
 	private int level; 
 	
+	//Start the game Add all components
 	public SokobanGame(int level){
 		this.level = level;
 		//ArrayList<ImageTile> tiles = buildSampleLevel(0);
 		ArrayList<ImageTile> tiles = buildRealLevel(level);
 		tiles.add(player);
 		player.setElementsInTheMap(elementsInTheMap);
-		player.addTargets(getTargetsInTheMap());
 		player.addGame(this);
 		ImageMatrixGUI.getInstance().addImages(tiles);
 		for (ImageTile x: tiles)
@@ -43,15 +47,7 @@ public class SokobanGame implements Observer {
 		
 		
 	}
-	public int getTargetsInTheMap() {
-		int targets = 0;
-		for(ElementKey x: elementsInTheMap)
-			if (x.getName().equals("Alvo"))
-				targets++;
-		return targets;
-	}
-	
-	
+	//Verify If the level is completed
 	private void checkAlvosAndCaixas () {
 		int counter = 0;
 		for (Point2D x: alvos)
@@ -65,6 +61,7 @@ public class SokobanGame implements Observer {
 			advnceToNextLevel(level + 1);
 		}
 	}
+	//Start a level from scratch
 	public void advnceToNextLevel(int levelToStart) {
 		elementsInTheMap.clear();
 		alvos.clear();
@@ -73,6 +70,7 @@ public class SokobanGame implements Observer {
 		ImageMatrixGUI.getInstance().clearImages();
 		ImageMatrixGUI.getInstance().unregisterObserver(this);
 		ImageMatrixGUI.getInstance().registerObserver(new SokobanGame(levelToStart));
+		ImageMatrixGUI.getInstance().update();
 		ImageMatrixGUI.getInstance().go();
 	}
 	private ArrayList<ImageTile> buildSampleLevel(int level){
@@ -101,6 +99,7 @@ public class SokobanGame implements Observer {
 				sampleLevelTiles.addAll(buildLine(scanner.nextLine(), row, level));
 				row++;
 			}
+			scanner.close();
 		}catch (FileNotFoundException e) {
 			System.err.println("ficheiro nao encontrado");
 		}
@@ -134,7 +133,7 @@ public class SokobanGame implements Observer {
 		}
 		return sampleLevelTiles;
 	}
-	
+	//List with all the objects that can Exist in the game :D
 	private ArrayList<KeyWords> getPossibleObjects(int level){
 		ArrayList<KeyWords> array = new ArrayList<>();
 		array.add(new AlvoKeyWord());
@@ -148,7 +147,13 @@ public class SokobanGame implements Observer {
 		array.add(new SmallStoneKeyWord());;
 		return array;
 	}
-	
+	private void checkForBuraco() {
+		for(ElementKey x: elementsInTheMap)
+			if(player.getPosition().equals(x.getPosition()) && x.getName().equals("Buraco") && !x.canPlayerStepInsideHole()) {
+				advnceToNextLevel(level);
+				return;
+			}
+	}
 	@Override
 	public void update(Observed arg0) {
 		int lastKeyPressed = ((ImageMatrixGUI)arg0).keyPressed();
@@ -157,27 +162,23 @@ public class SokobanGame implements Observer {
 		if (lastKeyPressed == KeyEvent.VK_UP || lastKeyPressed == 87) {
 			if (player != null) 
 				player.moveUp();
-			ImageMatrixGUI.getInstance().update();
-			checkAlvosAndCaixas();
 		}
 		else if (lastKeyPressed == KeyEvent.VK_DOWN || lastKeyPressed == 83) {
 			if (player != null) 
 				player.moveDown();
-			ImageMatrixGUI.getInstance().update();
-			checkAlvosAndCaixas();
 		}	
 		else if (lastKeyPressed == KeyEvent.VK_LEFT || lastKeyPressed == 65) {
 			if (player != null) 
 				player.moveLeft();
-			ImageMatrixGUI.getInstance().update();
-			checkAlvosAndCaixas();
 		}	
 		else if (lastKeyPressed == KeyEvent.VK_RIGHT || lastKeyPressed == 68) {
 			if (player != null) 
 				player.moveRight();
-			ImageMatrixGUI.getInstance().update();
-			checkAlvosAndCaixas();
 		}	
+		else if (lastKeyPressed == KeyEvent.VK_ENTER) {
+			if (player != null)
+				player.move();
+		}
 		// "n" next level
 		else if (lastKeyPressed == 78) {
 			if (player != null)
@@ -188,6 +189,16 @@ public class SokobanGame implements Observer {
 			if (player != null)
 				advnceToNextLevel(level);
 		}
+		else if (lastKeyPressed == 76) {
+			if (player != null)
+				ImageMatrixGUI.getInstance().dispose();
+		}
+		
+		if(player != null) {
+			ImageMatrixGUI.getInstance().update();
+			checkAlvosAndCaixas();
+			checkForBuraco();
+		}	
 //		else if (lastKeyPressed == KeyEvent.VK_ENTER || lastKeyPressed == 68) {
 //			if (player != null)
 //				player.move();

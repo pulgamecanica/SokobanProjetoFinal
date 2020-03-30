@@ -1,7 +1,6 @@
 package pt.iscte.dcti.poo.sokoban.starter;
 
 import pt.iul.ista.poo.gui.ImageTile;
-import pt.iul.ista.poo.utils.Point2D;
 
 public interface ElementKey extends ImageTile {
 	boolean canMove();
@@ -14,4 +13,5 @@ public interface ElementKey extends ImageTile {
 	//void setSurfaceUnderneath();
 	void objectIsOnTheHole();
 	int level();
+	boolean canPlayerStepInsideHole();
 }

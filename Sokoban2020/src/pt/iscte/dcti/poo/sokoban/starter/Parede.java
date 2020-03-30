@@ -73,4 +73,9 @@ public class Parede implements ImageTile, ElementKey {
 		return level;
 	}
 
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		return false;
+	}
+
 }

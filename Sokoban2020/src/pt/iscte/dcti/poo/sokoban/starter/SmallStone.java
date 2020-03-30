@@ -77,4 +77,8 @@ public class SmallStone implements ElementKey, ImageTile {
 	public int level() {
 		return level;
 	}
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		return false;
+	}
 }

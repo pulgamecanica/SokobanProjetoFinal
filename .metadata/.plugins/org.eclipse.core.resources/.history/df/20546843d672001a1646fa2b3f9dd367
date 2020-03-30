@@ -1,0 +1,86 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Point2D;
+
+public class BigStoneBuraco implements ElementKey, ImageTile {
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Point2D getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getLayer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean canMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean canStepOn() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ImageTile getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateElementUP(Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateElementDOWN(Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateElementRIGHT(Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateElementLEFT(Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void objectIsOnTheHole() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

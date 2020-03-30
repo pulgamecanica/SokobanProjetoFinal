@@ -39,11 +39,6 @@ public class Alvo implements ImageTile, ElementKey {
 		return this;
 	}
 
-//	@Override
-//	public void setSurfaceUnderneath() {
-//
-//	}
-//	
 	@Override
 	public void updateElementUP(Player p) {
 		return;
@@ -62,12 +57,15 @@ public class Alvo implements ImageTile, ElementKey {
 	}
 	@Override
 	public void objectIsOnTheHole() {
-		// TODO Auto-generated method stub
-		
+		return;
 	}
 	@Override
 	public int level() {
 		return level;
+	}
+	@Override
+	public boolean canPlayerStepInsideHole() {
+		return false;
 	}
 
 }
