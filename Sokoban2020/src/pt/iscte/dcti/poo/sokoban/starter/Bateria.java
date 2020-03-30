@@ -25,7 +25,7 @@ public class Bateria implements ElementKey, ImageTile {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 1;
 	}
 
 	@Override
@@ -44,31 +44,35 @@ public class Bateria implements ElementKey, ImageTile {
 		return this;
 	}
 	
-//	@Override
-//	public void setSurfaceUnderneath() {
-//		ImageMatrixGUI.getInstance().removeImage(this);;
-//	}
 	
 	@Override
-	public void updateElementUP() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
+	public void updateElementUP(Player p) {
+		ImageMatrixGUI.getInstance().removeImage(this);
+		p.gotTheBatrty();
 	}
 	@Override
-	public void updateElementDOWN() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
+	public void updateElementDOWN(Player p) {
+		ImageMatrixGUI.getInstance().removeImage(this);
+		p.gotTheBatrty();
 	}
 	@Override
-	public void updateElementRIGHT() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
+	public void updateElementRIGHT(Player p) {
+		ImageMatrixGUI.getInstance().removeImage(this);
+		p.gotTheBatrty();
 	}
 	@Override
-	public void updateElementLEFT() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
+	public void updateElementLEFT(Player p) {
+		ImageMatrixGUI.getInstance().removeImage(this);
+		p.gotTheBatrty();
 	}
 	@Override
 	public void objectIsOnTheHole() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public int level() {
+		return level;
 	}
 
 }

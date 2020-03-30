@@ -26,7 +26,7 @@ public class Buraco implements ElementKey, ImageTile {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 3;
 	}
 
 	@Override
@@ -46,13 +46,6 @@ public class Buraco implements ElementKey, ImageTile {
 		return this;
 	}
 
-	public void restartLevel() {
-		ImageMatrixGUI.getInstance().clearImages();
-		ImageMatrixGUI.setSize(10, 10);
-		SokobanGame s = new SokobanGame(level);
-		ImageMatrixGUI.getInstance().registerObserver(s);
-		ImageMatrixGUI.getInstance().go();
-	}
 	
 	@Override
 	public void objectIsOnTheHole() {
@@ -60,24 +53,24 @@ public class Buraco implements ElementKey, ImageTile {
 		
 	}
 	@Override
-	public void updateElementUP() {
-		if (bigStoneInside) 
-			restartLevel();
+	public void updateElementUP(Player p) {
+
 	}
 	@Override
-	public void updateElementDOWN() {
-		if (bigStoneInside) 
-			restartLevel();
+	public void updateElementDOWN(Player p) {
+
 	}
 	@Override
-	public void updateElementRIGHT() {
-		if (bigStoneInside) 
-			restartLevel();
+	public void updateElementRIGHT(Player p) {
+		
 	}
 	@Override
-	public void updateElementLEFT() {
-		if (bigStoneInside) 
-			restartLevel();
+	public void updateElementLEFT(Player p) {
+		
+	}
+	@Override
+	public int level() {
+		return level;
 	}
 
 }

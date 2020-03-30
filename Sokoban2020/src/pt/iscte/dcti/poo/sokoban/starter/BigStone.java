@@ -27,7 +27,7 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 2;
 	}
 
 	@Override
@@ -53,25 +53,31 @@ public class BigStone implements ElementKey, ImageTile {
 	}
 
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		Point2D = new Point2D(Point2D.getX(), Point2D.getY() - 1);
 	}
 
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		Point2D = new Point2D(Point2D.getX(), Point2D.getY() + 1);
 		
 	}
 
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		Point2D = new Point2D(Point2D.getX() + 1, Point2D.getY());
 	}
 
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 		Point2D = new Point2D(Point2D.getX() - 1, Point2D.getY());
 		
+	}
+
+	@Override
+	public int level() {
+		// TODO Auto-generated method stub
+		return level;
 	}
 
 }

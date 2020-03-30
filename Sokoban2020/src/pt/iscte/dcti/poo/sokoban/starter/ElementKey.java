@@ -7,10 +7,11 @@ public interface ElementKey extends ImageTile {
 	boolean canMove();
 	boolean canStepOn();
 	ImageTile getImage();
-	void updateElementUP();
-	void updateElementDOWN();
-	void updateElementRIGHT();
-	void updateElementLEFT();
+	void updateElementUP(Player p);
+	void updateElementDOWN(Player p);
+	void updateElementRIGHT(Player p);
+	void updateElementLEFT(Player p);
 	//void setSurfaceUnderneath();
 	void objectIsOnTheHole();
+	int level();
 }

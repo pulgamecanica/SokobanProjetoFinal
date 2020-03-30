@@ -16,13 +16,17 @@ public class Player implements ImageTile, ElementKey{
 	private String imageName;
 	private int level;
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
-	private int moves = 100;
+	private int moves = 20;
 	private int targets;
+	private SokobanGame game;
 	
 	public Player(Point2D initialPosition, int level){
 		position = initialPosition;
 		imageName = "Empilhadora_D";
 		this.level = level;
+	}
+	public void addGame(SokobanGame game) {
+		this.game = game;
 	}
 	
 	public void setElementsInTheMap(ArrayList<ElementKey> elementsInTheMap) {
@@ -45,7 +49,7 @@ public class Player implements ImageTile, ElementKey{
 	
 	@Override
 	public int getLayer() {
-		return level;
+		return 3;
 	}
 	
 	@Override
@@ -63,10 +67,17 @@ public class Player implements ImageTile, ElementKey{
 		return this;
 	}
 	
+	public void gotTheBatrty() {
+		moves = 100;
+	}
+	
 	public void setName(String name){
 		imageName = name;
 	}
 	
+	public void restartLevel() {
+		game.advnceToNextLevel(level);
+	}
 	public void buracoHere(Point2D newPosition, ElementKey object) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) 
 			for(ElementKey x: elementsInTheMap) {
@@ -95,7 +106,8 @@ public class Player implements ImageTile, ElementKey{
 		}
 			
 		if (moves == 0) {
-			SokobanGame s = new SokobanGame(level);
+			//SokobanGame s = new SokobanGame(level);
+			ImageMatrixGUI.getInstance().dispose();
 		}
 		return true;
 	}
@@ -105,7 +117,7 @@ public class Player implements ImageTile, ElementKey{
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
 			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX(), newPosition.getY() - 1))) {
-				x.updateElementUP();
+				x.updateElementUP(this);
 				buracoHere(new Point2D(newPosition.getX(), newPosition.getY() - 1), x);
 			}
 		}
@@ -122,7 +134,7 @@ public class Player implements ImageTile, ElementKey{
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
 			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX(), newPosition.getY() + 1))) {
-				x.updateElementDOWN();
+				x.updateElementDOWN(this);
 				buracoHere(new Point2D(newPosition.getX(), newPosition.getY() + 1), x);
 			}
 		}
@@ -139,7 +151,7 @@ public class Player implements ImageTile, ElementKey{
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
 			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX() - 1, newPosition.getY()))) {
-				x.updateElementLEFT();
+				x.updateElementLEFT(this);
 				buracoHere(new Point2D(newPosition.getX() - 1, newPosition.getY()), x);
 			}
 		}
@@ -156,7 +168,7 @@ public class Player implements ImageTile, ElementKey{
 		//Check for movableObjectsa
 		for(ElementKey x: elementsInTheMap) {
 			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX() + 1, newPosition.getY()))) {
-				x.updateElementRIGHT();
+				x.updateElementRIGHT(this);
 				buracoHere(new Point2D(newPosition.getX() + 1, newPosition.getY()), x);
 			}
 		}
@@ -188,27 +200,32 @@ public class Player implements ImageTile, ElementKey{
 	}
 
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int level() {
+		return level;
 	}
 
 }

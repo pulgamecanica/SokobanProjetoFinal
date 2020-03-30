@@ -25,7 +25,7 @@ public class Parede implements ImageTile, ElementKey {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 2;
 	}
 
 	@Override
@@ -49,23 +49,28 @@ public class Parede implements ImageTile, ElementKey {
 		ImageMatrixGUI.getInstance().removeImage(this);;
 	}
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 
+	}
+
+	@Override
+	public int level() {
+		return level;
 	}
 
 }

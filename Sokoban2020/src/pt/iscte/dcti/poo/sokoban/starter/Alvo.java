@@ -23,7 +23,7 @@ public class Alvo implements ImageTile, ElementKey {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 1;
 	}
 
 	@Override
@@ -45,25 +45,29 @@ public class Alvo implements ImageTile, ElementKey {
 //	}
 //	
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		return;
 	}
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		return;
 	}
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		return;
 	}
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 		return;
 	}
 	@Override
 	public void objectIsOnTheHole() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public int level() {
+		return level;
 	}
 
 }

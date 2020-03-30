@@ -8,6 +8,7 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	private Point2D Point2D;
 	private int level;
+	private boolean canStepHere = false;
 
 
 	public SmallStone(Point2D Point2D, int level){
@@ -26,7 +27,7 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 2;
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canStepOn() {
-		return false;
+		return canStepHere;
 	}
 
 	@Override
@@ -48,28 +49,32 @@ public class SmallStone implements ElementKey, ImageTile {
 	@Override
 	public void objectIsOnTheHole() {
 		ImageMatrixGUI.getInstance().removeImage(this);;
+		canStepHere = true;
 	}
+
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		Point2D = new Point2D(Point2D.getX(), Point2D.getY() - 1);
 	}
 
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		Point2D = new Point2D(Point2D.getX(), Point2D.getY() + 1);
 		
 	}
 
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		Point2D = new Point2D(Point2D.getX() + 1, Point2D.getY());
 	}
 
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 		Point2D = new Point2D(Point2D.getX() - 1, Point2D.getY());
 		
 	}
-
-
+	@Override
+	public int level() {
+		return level;
+	}
 }

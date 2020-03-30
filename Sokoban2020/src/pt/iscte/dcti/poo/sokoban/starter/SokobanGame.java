@@ -17,18 +17,30 @@ public class SokobanGame implements Observer {
  	
 	private Player player; 
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
-	
-
+	private ArrayList<Point2D> alvos = new ArrayList<>(); 
+	private ArrayList<ImageTile> caixas = new ArrayList<>(); 
+	private int level; 
 	
 	public SokobanGame(int level){
-		
+		this.level = level;
 		//ArrayList<ImageTile> tiles = buildSampleLevel(0);
 		ArrayList<ImageTile> tiles = buildRealLevel(level);
 		tiles.add(player);
 		player.setElementsInTheMap(elementsInTheMap);
 		player.addTargets(getTargetsInTheMap());
+		player.addGame(this);
 		ImageMatrixGUI.getInstance().addImages(tiles);
-		//Get all Alvos.
+		for (ImageTile x: tiles)
+			if(x.getName().equals("Alvo")) {
+				System.out.println("Founded a" + x.getName() +  "at" + " " + x.getPosition().getX() + " " + x.getPosition().getY());
+				alvos.add(x.getPosition());
+			}
+		for (ImageTile x: tiles)
+			if(x.getName().equals("Caixote")) {
+				System.out.println("Founded a" + x.getName() +  "at" + " " + x.getPosition().getX() + " " + x.getPosition().getY());
+				caixas.add(x);
+			}
+		
 		
 	}
 	public int getTargetsInTheMap() {
@@ -37,6 +49,31 @@ public class SokobanGame implements Observer {
 			if (x.getName().equals("Alvo"))
 				targets++;
 		return targets;
+	}
+	
+	
+	private void checkAlvosAndCaixas () {
+		int counter = 0;
+		for (Point2D x: alvos)
+			for(ImageTile y: caixas) {
+				if(x.equals(y.getPosition())) {
+					counter++;
+					System.out.println("One Caixa Done! :D");
+				}
+			}
+		if (counter == alvos.size()) {
+			advnceToNextLevel(level + 1);
+		}
+	}
+	public void advnceToNextLevel(int levelToStart) {
+		elementsInTheMap.clear();
+		alvos.clear();
+		caixas.clear();
+		player = null;
+		ImageMatrixGUI.getInstance().clearImages();
+		ImageMatrixGUI.getInstance().unregisterObserver(this);
+		ImageMatrixGUI.getInstance().registerObserver(new SokobanGame(levelToStart));
+		ImageMatrixGUI.getInstance().go();
 	}
 	private ArrayList<ImageTile> buildSampleLevel(int level){
 		
@@ -121,27 +158,42 @@ public class SokobanGame implements Observer {
 			if (player != null) 
 				player.moveUp();
 			ImageMatrixGUI.getInstance().update();
+			checkAlvosAndCaixas();
 		}
 		else if (lastKeyPressed == KeyEvent.VK_DOWN || lastKeyPressed == 83) {
 			if (player != null) 
 				player.moveDown();
 			ImageMatrixGUI.getInstance().update();
+			checkAlvosAndCaixas();
 		}	
 		else if (lastKeyPressed == KeyEvent.VK_LEFT || lastKeyPressed == 65) {
 			if (player != null) 
 				player.moveLeft();
 			ImageMatrixGUI.getInstance().update();
+			checkAlvosAndCaixas();
 		}	
 		else if (lastKeyPressed == KeyEvent.VK_RIGHT || lastKeyPressed == 68) {
 			if (player != null) 
 				player.moveRight();
 			ImageMatrixGUI.getInstance().update();
+			checkAlvosAndCaixas();
 		}	
-		else if (lastKeyPressed == KeyEvent.VK_ENTER || lastKeyPressed == 68) {
+		// "n" next level
+		else if (lastKeyPressed == 78) {
 			if (player != null)
-				player.move();
-			ImageMatrixGUI.getInstance().update();
+				advnceToNextLevel(level + 1);
 		}
+		// "r" restart level
+		else if (lastKeyPressed == 82) {
+			if (player != null)
+				advnceToNextLevel(level);
+		}
+//		else if (lastKeyPressed == KeyEvent.VK_ENTER || lastKeyPressed == 68) {
+//			if (player != null)
+//				player.move();
+//			ImageMatrixGUI.getInstance().update();
+//		}
+//////		checkAlvosAndCaixas();
 //		int counter = 0;
 //		for(ImageTile x: elementsInTheMap) {
 //			counter++;

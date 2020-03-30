@@ -24,7 +24,7 @@ public class Chao implements ImageTile, ElementKey {
 
 	@Override
 	public int getLayer() {
-		return level;
+		return 0;
 	}
 
 	@Override
@@ -44,26 +44,31 @@ public class Chao implements ImageTile, ElementKey {
 
 	@Override
 	public void objectIsOnTheHole() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
+		ImageMatrixGUI.getInstance().removeImage(this);
 	}
 	@Override
-	public void updateElementUP() {
+	public void updateElementUP(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementDOWN() {
+	public void updateElementDOWN(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementRIGHT() {
+	public void updateElementRIGHT(Player p) {
 		
 	}
 
 	@Override
-	public void updateElementLEFT() {
+	public void updateElementLEFT(Player p) {
 	
+	}
+
+	@Override
+	public int level() {
+		return level;
 	}
 
 
