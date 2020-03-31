@@ -1,0 +1,104 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import pt.iul.ista.poo.utils.Point2D;
+
+public class BestScores {
+	public Player player;
+	public SokobanGame game;
+	public int[] bestScore = new int[3];
+	public int level;
+	
+	public BestScores(Player player, SokobanGame game) {
+		this.player = player;
+		this.game = game;
+		this.level = player.level();
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+	public int[] getBestScore() {
+		return bestScore;
+	}
+
+	public void setBestScore(int score) {
+		for(int i = 0; i < bestScore.length; i++) {
+			if(bestScore[i] < score) {
+				bestScore[i] = score;
+				return;
+			}
+		}
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	//Verificar se o ficheiro esiste se nao, criar;
+	public int[] searchFile() {
+		int[] array = new int[3];
+		File tmpDir = new File("bestScores/BestScore_" + level + "txt");
+		if (!tmpDir.exists())
+			createOrAddScore();
+		else {
+			array = checkScores(tmpDir);
+		}
+		return array;
+	}
+	
+	//Create file with Scores if they exist.
+	public void createOrAddScore() {
+		try {
+			PrintWriter writer = new PrintWriter(new File("BestScore_" + level + ".txt"));
+			for(int i = 0; i < bestScore.length; i++) {
+				writer.println("BestScores!!!");
+				if(bestScore[i] != 0)
+					writer.println(i + "º " + bestScore[i] + " " + "moves.");
+			}
+			 writer.close();
+		}
+		catch (FileNotFoundException e) {
+		System.err.println("problema a escrever o ficheiro");
+		}
+	}
+	
+	//Read File and return Best Scores, This os that we dont lose the bestScores even after closing the game :D.
+	public int[] checkScores(File file) {
+		int[] array = new int[3];
+		try {
+			Scanner scanner = new Scanner(file);
+			String title_line = scanner.nextLine();
+			while(scanner.hasNextLine()) {
+				int i = 0;
+				String[] line = scanner.nextLine().split(" ");
+				array[i] = Integer.parseInt(line[1]);
+			}
+		}
+		catch (FileNotFoundException e) {
+			System.err.println("problema a escrever o ficheiro");
+		}
+		return array;
+	}
+	
+	public static void main(String[] args) {
+		Player p = new Player(new Point2D(1, 1), 1);
+		SokobanGame sG = new SokobanGame(1);
+		BestScores bS = new BestScores(p, )
+
+	}
+
+}

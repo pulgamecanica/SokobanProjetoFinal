@@ -1,0 +1,13 @@
+package pt.iscte.dcti.poo.sokoban.starter;
+
+public class BestScores {
+	public Player player;
+	public int[] BestScore;
+	public int level;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

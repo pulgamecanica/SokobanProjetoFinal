@@ -67,5 +67,12 @@ public class Alvo implements ImageTile, ElementKey {
 	public boolean canPlayerStepInsideHole() {
 		return false;
 	}
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+	@Override
+	public void useTheBatery() {
+	}
 
 }

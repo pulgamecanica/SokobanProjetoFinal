@@ -26,7 +26,9 @@ public class Player implements ImageTile, ElementKey{
 		imageName = "Empilhadora_D";
 		this.level = level;
 	}
-	
+	public int getMoves() {
+		return moves;
+	}
 	public void addGame(SokobanGame game) {
 		this.game = game;
 	}
@@ -99,6 +101,15 @@ public class Player implements ImageTile, ElementKey{
 	public boolean canPlayerStepInsideHole() {
 		return false;
 	}
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+
+	@Override
+	public void useTheBatery() {
+		
+	}
 	
 	public int movesDone() {
 		return movesDone;
@@ -132,16 +143,16 @@ public class Player implements ImageTile, ElementKey{
 	}
 	
 	private boolean moveCheck(Point2D newPosition) {
-		ImageMatrixGUI.getInstance().setStatusMessage("Level: " + (level+1) + " Moves: " + movesDone() + " Energy: "+ (double)moves + "%" + " BestScore: ::::::" + "           'r'-->RESTART 'n'-->NEXTLEVEL 'l'-->QUITGAME");
-		ImageMatrixGUI.getInstance().setName("Level: "+ level);
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) {
 			for(ElementKey x: elementsInTheMap) {
 				if((!x.canStepOn() && x.getPosition().equals(newPosition))) {
 					ImageMatrixGUI.getInstance().setStatusMessage("Something is on your Way!");
 					return false;
 				}	
-				if(x.getName().equals("Bateria"))
+				if(!x.usedBatery() && x.getPosition().equals(newPosition)) {
 					gotTheBatrty();
+					x.useTheBatery();
+				}
 			}
 		}	
 		return true;

@@ -84,4 +84,14 @@ public class BigStone implements ElementKey, ImageTile {
 		return false;
 	}
 
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+
+	@Override
+	public void useTheBatery() {
+		
+	}
+
 }

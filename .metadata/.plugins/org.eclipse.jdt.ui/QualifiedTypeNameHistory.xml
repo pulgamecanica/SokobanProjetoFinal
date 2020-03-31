@@ -7,4 +7,5 @@
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="pt.iul.ista.poo.utils.Vector2D"/>
 <fullyQualifiedTypeName name="pt.iscte.dcti.poo.sokoban.starter.Player"/>
+<fullyQualifiedTypeName name="pt.iscte.dcti.poo.sokoban.starter.ElementKey"/>
 </qualifiedTypeNameHistroy>

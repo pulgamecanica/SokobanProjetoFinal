@@ -32,7 +32,8 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canMove() {
-		return true;
+		//Don't know true/false
+		return false;
 	}
 
 	@Override
@@ -80,5 +81,13 @@ public class SmallStone implements ElementKey, ImageTile {
 	@Override
 	public boolean canPlayerStepInsideHole() {
 		return false;
+	}
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+	@Override
+	public void useTheBatery() {
+	
 	}
 }

@@ -78,4 +78,14 @@ public class Parede implements ImageTile, ElementKey {
 		return false;
 	}
 
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+
+	@Override
+	public void useTheBatery() {
+		
+	}
+
 }

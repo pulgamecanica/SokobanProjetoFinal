@@ -77,5 +77,13 @@ public class Buraco implements ElementKey, ImageTile {
 			return true;
 		return false;
 	}
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+	@Override
+	public void useTheBatery() {
+	
+	}
 
 }

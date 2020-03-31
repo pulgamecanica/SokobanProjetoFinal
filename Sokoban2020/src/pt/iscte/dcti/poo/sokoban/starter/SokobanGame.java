@@ -23,7 +23,9 @@ public class SokobanGame implements Observer {
 	
 	private ArrayList<ImageTile> caixas = new ArrayList<>(); 
 	
-	private int level; 
+	private int level;
+	
+	private BestScores bS;
 	
 	//Start the game Add all components
 	public SokobanGame(int level){
@@ -44,8 +46,11 @@ public class SokobanGame implements Observer {
 				System.out.println("Founded a" + x.getName() +  "at" + " " + x.getPosition().getX() + " " + x.getPosition().getY());
 				caixas.add(x);
 			}
-		
-		
+		bS = new BestScores(level);
+		bS.searchFile();
+		System.out.println(bS.getTopOne());
+		messages();
+		//SET SCORES
 	}
 	//Verify If the level is completed
 	private void checkAlvosAndCaixas () {
@@ -58,9 +63,17 @@ public class SokobanGame implements Observer {
 				}
 			}
 		if (counter == alvos.size()) {
+			bS.setBestScore(player.movesDone());
+			bS.createOrAddScore();
 			advnceToNextLevel(level + 1);
 		}
 	}
+	//Messages
+	private void messages() {
+		ImageMatrixGUI.getInstance().setStatusMessage("Level: " + (level+1) + " Moves: " + player.movesDone() + " Energy: "+ player.getMoves() + " BestScore" + (bS.getTopOne()==0? "NULL":bS.getTopOne()) +  " ----------->>>>'r'-->RESTART 'n'-->NEXTLEVEL 'b'-->BACK 'l'-->QUITGAME<<<<----------");
+		ImageMatrixGUI.getInstance().setName("Level: "+ level);
+	}
+	
 	//Start a level from scratch
 	public void advnceToNextLevel(int levelToStart) {
 		elementsInTheMap.clear();
@@ -156,6 +169,7 @@ public class SokobanGame implements Observer {
 	}
 	@Override
 	public void update(Observed arg0) {
+		messages();
 		int lastKeyPressed = ((ImageMatrixGUI)arg0).keyPressed();
 		System.out.println("Key pressed " + lastKeyPressed);
 		// VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT
@@ -193,7 +207,10 @@ public class SokobanGame implements Observer {
 			if (player != null)
 				ImageMatrixGUI.getInstance().dispose();
 		}
-		
+		else if (lastKeyPressed == 66) {
+			if (player != null)
+				advnceToNextLevel(level - 1);
+		}
 		if(player != null) {
 			ImageMatrixGUI.getInstance().update();
 			checkAlvosAndCaixas();

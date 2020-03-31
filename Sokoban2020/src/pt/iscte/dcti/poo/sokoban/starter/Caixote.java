@@ -82,6 +82,14 @@ public class Caixote implements ElementKey, ImageTile {
 	public boolean canPlayerStepInsideHole() {
 		return false;
 	}
+	@Override
+	public boolean usedBatery() {
+		return true;
+	}
+	@Override
+	public void useTheBatery() {
+	
+	}
 
 
 }
