@@ -1,8 +1,6 @@
 package pt.iscte.dcti.poo.sokoban.starter;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
@@ -19,12 +17,17 @@ public class Player implements ImageTile, ElementKey{
 	private int moves = 100;
 	private SokobanGame game;
 	private int movesDone = 0;
+	private String empilhadora_D, empilhadora_U, empilhadora_R, empilhadora_L;
 
 	
 	public Player(Point2D initialPosition, int level){
 		position = initialPosition;
-		imageName = "Empilhadora_D";
 		this.level = level;
+		imageName = "Empilhadora_D";
+		empilhadora_D = "Empilhadora_D";
+		empilhadora_U = "Empilhadora_U";
+		empilhadora_R = "Empilhadora_R";
+		empilhadora_L = "Empilhadora_L";
 	}
 	public int getMoves() {
 		return moves;
@@ -69,27 +72,27 @@ public class Player implements ImageTile, ElementKey{
 	
 	@Override
 	public void objectIsOnTheHole() {
-	
+		return;
 	}
 
 	@Override
 	public void updateElementUP(Player p) {
-		
+		return;
 	}
 
 	@Override
 	public void updateElementDOWN(Player p) {
-		
+		return;
 	}
 
 	@Override
 	public void updateElementRIGHT(Player p) {
-
+		return;
 	}
 
 	@Override
 	public void updateElementLEFT(Player p) {
-		
+		return;
 	}
 
 	@Override
@@ -108,7 +111,19 @@ public class Player implements ImageTile, ElementKey{
 
 	@Override
 	public void useTheBatery() {
-		
+		return;
+	}
+	
+	@Override
+	public void activateLinkMode() {
+		empilhadora_U = "Link_U";
+		empilhadora_D = "Link_D";
+		empilhadora_L = "Link_L";
+		empilhadora_R = "Link_R";
+	}
+	@Override
+	public boolean isBig() {
+		return false;
 	}
 	
 	public int movesDone() {
@@ -132,10 +147,10 @@ public class Player implements ImageTile, ElementKey{
 	public void buracoHere(Point2D newPosition, ElementKey object) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) 
 			for(ElementKey x: elementsInTheMap) {
-				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && x.getImage().getName().equals("Buraco") && !x.canPlayerStepInsideHole()) {
+				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && !x.canPlayerStepInsideHole() && x instanceof Buraco) {
 					object.objectIsOnTheHole();
 				}
-				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && x.getImage().getName().equals("Buraco") && object.getName().equals("BigStone")) {
+				if ((x.canStepOn() && x.getPosition().equals(newPosition)) &&  x instanceof Buraco && object.isBig()) {
 					x.objectIsOnTheHole();
 				}
 					
@@ -158,14 +173,13 @@ public class Player implements ImageTile, ElementKey{
 		return true;
 	}
 	
-
 	public void moveUp() {
-		Point2D newPosition = new Point2D(position.getX(), position.getY() - 1);
+		Point2D newPosition = position.plus(new Vector2D(0, -1));
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX(), newPosition.getY() - 1))) {
+			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(0, -1)))) {
 				x.updateElementUP(this);
-				buracoHere(new Point2D(newPosition.getX(), newPosition.getY() - 1), x);
+				buracoHere(newPosition.plus(new Vector2D(0, -1)), x);
 			}
 		}
 		ImageMatrixGUI.getInstance().update();
@@ -175,15 +189,16 @@ public class Player implements ImageTile, ElementKey{
 			movesDone++;
 			position = newPosition;
 		}
-		setName("Empilhadora_U");
+		setName(empilhadora_U);
 		ImageMatrixGUI.getInstance().update();
 		restartLevel();
 	}
+	
 	public void moveDown() {
-		Point2D newPosition = new Point2D(position.getX(), position.getY() + 1);
+		Point2D newPosition = position.plus(new Vector2D(0, 1));
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX(), newPosition.getY() + 1))) {
+			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(0, 1)))) {
 				x.updateElementDOWN(this);
 				buracoHere(new Point2D(newPosition.getX(), newPosition.getY() + 1), x);
 			}
@@ -194,17 +209,18 @@ public class Player implements ImageTile, ElementKey{
 			moves--;
 			movesDone++;
 		}
-		setName("Empilhadora_D");
+		setName(empilhadora_D);
 		ImageMatrixGUI.getInstance().update();
 		restartLevel();
 	}
+	
 	public void moveLeft() {
-		Point2D newPosition = new Point2D(position.getX() - 1, position.getY());
+		Point2D newPosition = position.plus(new Vector2D(-1, 0));
 		//Check for movableObjects
 		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX() - 1, newPosition.getY()))) {
+			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(-1, 0)))) {
 				x.updateElementLEFT(this);
-				buracoHere(new Point2D(newPosition.getX() - 1, newPosition.getY()), x);
+				buracoHere(newPosition.plus(new Vector2D(-1, 0)), x);
 			}
 		}
 		ImageMatrixGUI.getInstance().update();
@@ -213,17 +229,18 @@ public class Player implements ImageTile, ElementKey{
 			position = newPosition;
 			movesDone++;
 		}
-		setName("Empilhadora_L");
+		setName(empilhadora_L);
 		ImageMatrixGUI.getInstance().update();
 		restartLevel();
 	}
+	
 	public void moveRight() {
-		Point2D newPosition = new Point2D(position.getX() + 1, position.getY());
+		Point2D newPosition = position.plus(new Vector2D(1, 0));
 		//Check for movableObjectsa
 		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(new Point2D(newPosition.getX() + 1, newPosition.getY()))) {
+			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(1, 0)))) {
 				x.updateElementRIGHT(this);
-				buracoHere(new Point2D(newPosition.getX() + 1, newPosition.getY()), x);
+				buracoHere(newPosition.plus(new Vector2D(1, 0)), x);
 			}
 		}
 		ImageMatrixGUI.getInstance().update();
@@ -232,7 +249,7 @@ public class Player implements ImageTile, ElementKey{
 			movesDone++;
 			position = newPosition;
 		}
-		setName("Empilhadora_R");
+		setName(empilhadora_R);
 		ImageMatrixGUI.getInstance().update();
 		restartLevel();
 	}

@@ -1,8 +1,11 @@
 package pt.iscte.dcti.poo.sokoban.starter;
 
+
+
 import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Point2D;
+import pt.iul.ista.poo.utils.Vector2D;
 
 public class BigStone implements ElementKey, ImageTile {
 
@@ -33,7 +36,7 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canMove() {
-		return true;
+		return !canStepHere;
 	}
 
 	@Override
@@ -54,23 +57,23 @@ public class BigStone implements ElementKey, ImageTile {
 
 	@Override
 	public void updateElementUP(Player p) {
-		Point2D = new Point2D(Point2D.getX(), Point2D.getY() - 1);
+		Point2D = Point2D.plus(new Vector2D(0,-1));;
 	}
 
 	@Override
 	public void updateElementDOWN(Player p) {
-		Point2D = new Point2D(Point2D.getX(), Point2D.getY() + 1);
+		Point2D = Point2D.plus(new Vector2D(0,1));;
 		
 	}
 
 	@Override
 	public void updateElementRIGHT(Player p) {
-		Point2D = new Point2D(Point2D.getX() + 1, Point2D.getY());
+		Point2D = Point2D.plus(new Vector2D(1,0));;
 	}
 
 	@Override
 	public void updateElementLEFT(Player p) {
-		Point2D = new Point2D(Point2D.getX() - 1, Point2D.getY());
+		Point2D = Point2D.plus(new Vector2D(-1, 0));;
 		
 	}
 
@@ -92,6 +95,17 @@ public class BigStone implements ElementKey, ImageTile {
 	@Override
 	public void useTheBatery() {
 		
+	}
+
+	@Override
+	public void activateLinkMode() {
+		name = "TreasureChest1";
+	}
+
+	@Override
+	public boolean isBig() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

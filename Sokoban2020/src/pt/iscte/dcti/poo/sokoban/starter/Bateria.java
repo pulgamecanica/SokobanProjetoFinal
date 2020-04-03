@@ -47,7 +47,6 @@ public class Bateria implements ElementKey, ImageTile {
 		return this;
 	}
 	
-	
 	@Override
 	public void updateElementUP(Player p) {
 		ImageMatrixGUI.getInstance().removeImage(this);
@@ -84,6 +83,14 @@ public class Bateria implements ElementKey, ImageTile {
 	public void useTheBatery() {
 		usedBatery = true;
 		layer = -1;
+	}
+	@Override
+	public void activateLinkMode() {
+		name = "Ocarina";
+	}
+	@Override
+	public boolean isBig() {
+		return false;
 	}
 
 }

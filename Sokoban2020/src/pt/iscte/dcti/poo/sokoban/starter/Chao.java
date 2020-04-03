@@ -7,6 +7,7 @@ public class Chao implements ImageTile, ElementKey {
 
 	private Point2D Point2D;
 	private int level;
+	private String name = "Chao";
 	
 	public Chao(Point2D Point2D, int level){
 		this.Point2D = Point2D;
@@ -14,7 +15,7 @@ public class Chao implements ImageTile, ElementKey {
 	
 	@Override
 	public String getName() {
-		return "Chao";
+		return name;
 	}
 
 	@Override
@@ -84,6 +85,17 @@ public class Chao implements ImageTile, ElementKey {
 	@Override
 	public void useTheBatery() {
 		
+	}
+
+	@Override
+	public void activateLinkMode() {
+		name = "Floor";
+	}
+
+	@Override
+	public boolean isBig() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

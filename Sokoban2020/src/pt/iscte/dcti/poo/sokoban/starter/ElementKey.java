@@ -15,5 +15,7 @@ public interface ElementKey extends ImageTile {
 	void updateElementLEFT(Player p);
 	void objectIsOnTheHole();
 	int level();
+	void activateLinkMode();
+	boolean isBig();
 
 }

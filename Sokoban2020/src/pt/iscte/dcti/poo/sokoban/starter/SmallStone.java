@@ -3,12 +3,14 @@ package pt.iscte.dcti.poo.sokoban.starter;
 import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Point2D;
+import pt.iul.ista.poo.utils.Vector2D;
 
 public class SmallStone implements ElementKey, ImageTile {
 
 	private Point2D Point2D;
 	private int level;
 	private boolean canStepHere = false;
+	private String name = "SmallStone";
 
 
 	public SmallStone(Point2D Point2D, int level){
@@ -17,7 +19,7 @@ public class SmallStone implements ElementKey, ImageTile {
 	}
 	@Override
 	public String getName() {
-		return "SmallStone";
+		return name;
 	}
 
 	@Override
@@ -32,8 +34,7 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	@Override
 	public boolean canMove() {
-		//Don't know true/false
-		return false;
+		return true;
 	}
 
 	@Override
@@ -45,8 +46,7 @@ public class SmallStone implements ElementKey, ImageTile {
 	public ImageTile getImage() {
 		return this;
 	}
-
-
+	
 	@Override
 	public void objectIsOnTheHole() {
 		ImageMatrixGUI.getInstance().removeImage(this);;
@@ -55,23 +55,23 @@ public class SmallStone implements ElementKey, ImageTile {
 
 	@Override
 	public void updateElementUP(Player p) {
-		Point2D = new Point2D(Point2D.getX(), Point2D.getY() - 1);
+		Point2D = Point2D.plus(new Vector2D(0,-1));;
 	}
 
 	@Override
 	public void updateElementDOWN(Player p) {
-		Point2D = new Point2D(Point2D.getX(), Point2D.getY() + 1);
+		Point2D = Point2D.plus(new Vector2D(0,1));;
 		
 	}
 
 	@Override
 	public void updateElementRIGHT(Player p) {
-		Point2D = new Point2D(Point2D.getX() + 1, Point2D.getY());
+		Point2D = Point2D.plus(new Vector2D(1,0));;
 	}
 
 	@Override
 	public void updateElementLEFT(Player p) {
-		Point2D = new Point2D(Point2D.getX() - 1, Point2D.getY());
+		Point2D = Point2D.plus(new Vector2D(-1, 0));;
 		
 	}
 	@Override
@@ -89,5 +89,13 @@ public class SmallStone implements ElementKey, ImageTile {
 	@Override
 	public void useTheBatery() {
 	
+	}
+	@Override
+	public void activateLinkMode() {
+		name = "TreasureChest2";
+	}
+	@Override
+	public boolean isBig() {
+		return false;
 	}
 }

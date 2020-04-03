@@ -7,6 +7,7 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Parede implements ImageTile, ElementKey {
 	private Point2D Point2D;
 	private int level;
+	private String name = "Parede";
 	
 	public Parede(Point2D Point2D, int level){
 		this.Point2D = Point2D;
@@ -15,7 +16,7 @@ public class Parede implements ImageTile, ElementKey {
 	
 	@Override
 	public String getName() {
-		return "Parede";
+		return name;
 	}
 
 	@Override
@@ -86,6 +87,17 @@ public class Parede implements ImageTile, ElementKey {
 	@Override
 	public void useTheBatery() {
 		
+	}
+
+	@Override
+	public void activateLinkMode() {
+		name = "Wall1png";
+	}
+
+	@Override
+	public boolean isBig() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

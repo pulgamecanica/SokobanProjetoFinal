@@ -3,11 +3,9 @@ package pt.iscte.dcti.poo.sokoban.starter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import pt.iul.ista.poo.utils.Point2D;
 
 public class BestScores {
 	public int[] bestScore = new int[3];
@@ -26,22 +24,14 @@ public class BestScores {
 		for(int i = 0; i < bestScore.length; i++) {
 			if(bestScore[i] == 0) {
 				bestScore[i] = score;
+				sortScore();
 				return;
 			}
 		}
-		Arrays.sort(bestScore);
-		for (int i = 0; i < bestScore.length-1; i++) {
-			if(bestScore[i] == 0) {
-				int box1 = bestScore[i];
-				bestScore[i] = bestScore[i+1];
-				bestScore[i+1] = box1;
-			}
-		}
+		sortScore();
 		addBestScore(score);
 	}
-	public void addBestScore(int score) {
-		if(score <= bestScore[bestScore.length - 1])
-			bestScore[bestScore.length - 1] = score;
+	public void sortScore() {
 		Arrays.sort(bestScore);
 		for (int i = 0; i < bestScore.length-1; i++) {
 			if(bestScore[i] == 0) {
@@ -50,6 +40,11 @@ public class BestScores {
 				bestScore[i+1] = box1;
 			}
 		}
+	}
+	public void addBestScore(int score) {
+		if(score < bestScore[bestScore.length - 1])
+			bestScore[bestScore.length - 1] = score;
+		sortScore();
 	}
 	
 	public int getTopOne() {
@@ -59,7 +54,6 @@ public class BestScores {
 	public int getLevel() {
 		return level;
 	}
-
 	//Check if the file exists, else create it
 	public void searchFile() {
 		File tmpDir = new File("bestScores/BestScore_" + level + ".txt");
@@ -67,10 +61,8 @@ public class BestScores {
 			createOrAddScore();
 		else {
 			checkScores(tmpDir);
-			createOrAddScore();
 		}
 	}
-	
 	//Create file with Scores if they exist.
 	public void createOrAddScore() {
 		try {
@@ -86,7 +78,6 @@ public class BestScores {
 		System.err.println("problema a escrever o ficheiro");
 		}
 	}
-	
 	//Read File and return Best Scores, so that we don't lose the bestScores even after closing the game :D.
 	public void checkScores(File file) {
 		int[] array = new int[3];
@@ -99,6 +90,7 @@ public class BestScores {
 				array[i] = Integer.parseInt(line[1]);
 				i++;
 			}
+			scanner.close();
 		}
 		catch (FileNotFoundException e) {
 			System.err.println("problema a escrever o ficheiro");
@@ -107,21 +99,20 @@ public class BestScores {
 			if(array[i] != 0)
 				setBestScore(array[i]);
 	}
-	
 	public static void main(String[] args) {
-		BestScores bS = new BestScores(1);
+//		BestScores bS = new BestScores(4);
 		//test1 No BEstScores
 //		bS.searchFile();
 		//test2 WithBestScores
 //		bS.setBestScore(40);
 //		bS.setBestScore(15);
-//		bS.setBestScore(50);
+// 		bS.setBestScore(50);
 //		bS.setBestScore(30);
 //		bS.setBestScore(10);
-		bS.searchFile();
-		int[] test = bS.getBestScore();
-		for(int i = 0; i < test.length; i++)
-			System.out.println(test[i]);
+//		bS.searchFile();
+//		int[] test = bS.getBestScore();
+//		for(int i = 0; i < test.length; i++)
+//			System.out.println(test[i]);
 		//test3 With file with Scores
 //		bS.searchFile();
 //		int[] test = bS.getBestScore();

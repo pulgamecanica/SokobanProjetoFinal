@@ -6,14 +6,16 @@ import pt.iul.ista.poo.utils.Point2D;
 public class Alvo implements ImageTile, ElementKey {
 	private Point2D Point2D;
 	private int level;
+	private String name;
 	
 	public Alvo(Point2D Point2D, int level){
 		this.Point2D = Point2D;
 		this.level = level;
+		name = "Alvo";
 	}
 	@Override
 	public String getName() {
-		return "Alvo";
+		return name;
 	}
 
 	@Override
@@ -73,6 +75,14 @@ public class Alvo implements ImageTile, ElementKey {
 	}
 	@Override
 	public void useTheBatery() {
+	}
+	@Override
+	public void activateLinkMode() {
+		name = "Triforce";
+	}
+	@Override
+	public boolean isBig() {
+		return false;
 	}
 
 }
