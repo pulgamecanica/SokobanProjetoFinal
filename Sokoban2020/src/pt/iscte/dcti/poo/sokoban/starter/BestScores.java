@@ -11,13 +11,9 @@ public class BestScores {
 	public int[] bestScore = new int[3];
 	public final int level;
 	
-	public BestScores(int level) {
-		this.level = level;
-	}
+	public BestScores(int level) {this.level = level;}
 	
-	public int[] getBestScore() {
-		return bestScore;
-	}
+	public int[] getBestScore() {return bestScore;}
 	
 	//Register BestScores
 	public void setBestScore(int score) {
@@ -31,6 +27,7 @@ public class BestScores {
 		sortScore();
 		addBestScore(score);
 	}
+	
 	public void sortScore() {
 		Arrays.sort(bestScore);
 		for (int i = 0; i < bestScore.length-1; i++) {
@@ -41,6 +38,7 @@ public class BestScores {
 			}
 		}
 	}
+	
 	public void addBestScore(int score) {
 		if(score < bestScore[bestScore.length - 1])
 			bestScore[bestScore.length - 1] = score;

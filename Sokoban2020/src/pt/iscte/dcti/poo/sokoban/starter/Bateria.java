@@ -2,6 +2,7 @@ package pt.iscte.dcti.poo.sokoban.starter;
 
 import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
 public class Bateria implements ElementKey, ImageTile {
@@ -16,81 +17,35 @@ public class Bateria implements ElementKey, ImageTile {
 		this.Point2D = Point2D;
 		this.level = level;
 	}
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public Point2D getPosition() {
-		return Point2D;
-	}
-
-	@Override
-	public int getLayer() {
-		return layer;
-	}
-
-	@Override
-	public boolean canMove() {
-		return true;
-	}
-
-	@Override
-	public boolean canStepOn() {
-		return true;
-	}
-	
-
-	@Override
-	public ImageTile getImage() {
-		return this;
-	}
 	
 	@Override
-	public void updateElementUP(Player p) {
-		ImageMatrixGUI.getInstance().removeImage(this);
-	}
+	public String getName() {return name;}
 	@Override
-	public void updateElementDOWN(Player p) {
-		ImageMatrixGUI.getInstance().removeImage(this);
-	}
+	public Point2D getPosition() {return Point2D;}
 	@Override
-	public void updateElementRIGHT(Player p) {
-		ImageMatrixGUI.getInstance().removeImage(this);
-	}
+	public int getLayer() {return layer;}
 	@Override
-	public void updateElementLEFT(Player p) {
-		ImageMatrixGUI.getInstance().removeImage(this);
-	}
+	public boolean canMove() {return true;}
 	@Override
-	public void objectIsOnTheHole() {
-		return;
-	}
+	public boolean canStepOn() {return true;}
 	@Override
-	public int level() {
-		return level;
-	}
+	public ImageTile getImage() {return this;}
 	@Override
-	public boolean canPlayerStepInsideHole() {
-		return false;
-	}
+	public void objectIsOnTheHole() {return;}
 	@Override
-	public boolean usedBatery() {
-		return usedBatery;
-	}
+	public int level() {return level;}
 	@Override
-	public void useTheBatery() {
-		usedBatery = true;
-		layer = -1;
-	}
+	public boolean canPlayerStepInsideHole() {return false;}
 	@Override
-	public void activateLinkMode() {
-		name = "Ocarina";
-	}
+	public boolean usedBatery() {return usedBatery;}
 	@Override
-	public boolean isBig() {
-		return false;
-	}
-
+	public void useTheBatery() {usedBatery = true;layer = -1;}
+	@Override
+	public void activateLinkMode() {	name = "Ocarina";}
+	@Override
+	public boolean isBig() {	return false;}
+	@Override
+	public void activateMarioMode() {	name = "MarioMushroom";}
+	@Override
+	public void updateElement(Direction dir) {return;}
 }

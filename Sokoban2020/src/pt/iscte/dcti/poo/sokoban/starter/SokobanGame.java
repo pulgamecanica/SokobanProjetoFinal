@@ -10,27 +10,20 @@ import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.observer.Observed;
 import pt.iul.ista.poo.observer.Observer;
+import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
 public class SokobanGame implements Observer {
  	//Attributes	
 	private Player player; 
-	
 	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
-	
 	private ArrayList<Point2D> alvos = new ArrayList<>(); 
-	
 	private ArrayList<ImageTile> caixas = new ArrayList<>(); 
-	
 	private int level;
-	
 	private BestScores bS;
 	
 	//Start the game Add all components
 	public SokobanGame(int level){
-		if (level > 3) {
-			ImageMatrixGUI.setSize(ImageMatrixGUI.getInstance().getGridDimension().height + (10 * (level / 4)), ImageMatrixGUI.getInstance().getGridDimension().width + (10 * (10 * (level / 4))));
-		}
 		this.level = level;
 		//ArrayList<ImageTile> tiles = buildSampleLevel(0);
 		ArrayList<ImageTile> tiles = buildRealLevel(level);
@@ -68,10 +61,9 @@ public class SokobanGame implements Observer {
 	}
 	//Messages
 	private void messages() {
-		ImageMatrixGUI.getInstance().setStatusMessage("LEVEL: " + (level+1) + " ****** Moves: " + player.movesDone() + " ****** Energy: "+ player.getMoves() + " ****** BestScore: " + (bS.getTopOne()==0? "NULL":bS.getTopOne()) +  " ****** >>>>'r'-->RESTART - 'n'-->NEXTLEVEL - 'b'-->BACK - 'l'-->QUITGAME ****** - 'h'??? <<<<");
+		ImageMatrixGUI.getInstance().setStatusMessage("LEVEL: " + (level+1) + " ** MOVES: " + player.movesDone() + " ** ENERGY: "+ player.getMoves() + " ** BestScore: " + (bS.getTopOne()==0? "NULL":bS.getTopOne()) +  " ** >>>>'r'-->RESTART - 'n'-->NEXTLEVEL - 'b'-->BACK - 'l'-->QUITGAME ** - 'h'??? - 'm'??? <<<<");
 		ImageMatrixGUI.getInstance().setName("Level: "+ (level+1));
 	}
-	
 	//Start a level from scratch
 	public void advnceToNextLevel(int levelToStart) {
 		elementsInTheMap.clear();
@@ -162,6 +154,7 @@ public class SokobanGame implements Observer {
 		array.add(new SmallStoneKeyWord());;
 		return array;
 	}
+	
 	private void checkForBuraco() {
 		for(ElementKey x: elementsInTheMap)
 			if(player.getPosition().equals(x.getPosition()) && x.getName().equals("Buraco") && !x.canPlayerStepInsideHole()) {
@@ -173,27 +166,11 @@ public class SokobanGame implements Observer {
 	public void update(Observed arg0) {
 		messages();
 		int lastKeyPressed = ((ImageMatrixGUI)arg0).keyPressed();
-		//System.out.println("Key pressed " + lastKeyPressed);
+		System.out.println("Key pressed " + lastKeyPressed);
 		// VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT
-		if (lastKeyPressed == KeyEvent.VK_UP || lastKeyPressed == 87) {
+		if (lastKeyPressed == KeyEvent.VK_UP || lastKeyPressed == KeyEvent.VK_DOWN || lastKeyPressed == KeyEvent.VK_LEFT || lastKeyPressed == KeyEvent.VK_RIGHT) {
 			if (player != null) 
-				player.moveUp();
-		}
-		else if (lastKeyPressed == KeyEvent.VK_DOWN || lastKeyPressed == 83) {
-			if (player != null) 
-				player.moveDown();
-		}	
-		else if (lastKeyPressed == KeyEvent.VK_LEFT || lastKeyPressed == 65) {
-			if (player != null) 
-				player.moveLeft();
-		}	
-		else if (lastKeyPressed == KeyEvent.VK_RIGHT || lastKeyPressed == 68) {
-			if (player != null) 
-				player.moveRight();
-		}	
-		else if (lastKeyPressed == KeyEvent.VK_ENTER) {
-			if (player != null)
-				player.move();
+				player.move(Direction.directionFor(lastKeyPressed));
 		}
 		// "n" next level
 		else if (lastKeyPressed == 78) {
@@ -205,10 +182,12 @@ public class SokobanGame implements Observer {
 			if (player != null)
 				advnceToNextLevel(level);
 		}
+		// "l" quit
 		else if (lastKeyPressed == 76) {
 			if (player != null)
 				ImageMatrixGUI.getInstance().dispose();
 		}
+		// "b" go back
 		else if (lastKeyPressed == 66) {
 			if (player != null)
 				advnceToNextLevel(level - 1);
@@ -220,6 +199,28 @@ public class SokobanGame implements Observer {
 				player.activateLinkMode();
 			}
 		}
+		else if (lastKeyPressed == 77) {
+			if (player != null) {
+				for(ElementKey x: elementsInTheMap)
+					x.activateMarioMode();
+				player.activateMarioMode();
+			}
+		}
+		// 'p' Change player :D
+		else if (lastKeyPressed == 80) {
+			if (player != null) {
+				int random = (int)(Math.random() * 3) +1;
+				System.out.println(random);
+				if (random == 1)
+					player.activateMarioMode();
+				if (random == 2)
+					player.activateLinkMode();
+				if (random == 3)
+					player.deactivateMode();
+				ImageMatrixGUI.getInstance().update();
+			}
+		}
+		//Check gameStatus
 		if(player != null) {
 			ImageMatrixGUI.getInstance().update();
 			checkAlvosAndCaixas();

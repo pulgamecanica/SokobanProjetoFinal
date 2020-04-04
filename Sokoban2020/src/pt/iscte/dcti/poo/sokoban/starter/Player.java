@@ -6,7 +6,6 @@ import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
-import pt.iul.ista.poo.utils.Vector2D;
 
 public class Player implements ImageTile, ElementKey{
 
@@ -29,134 +28,84 @@ public class Player implements ImageTile, ElementKey{
 		empilhadora_R = "Empilhadora_R";
 		empilhadora_L = "Empilhadora_L";
 	}
-	public int getMoves() {
-		return moves;
-	}
-	public void addGame(SokobanGame game) {
-		this.game = game;
-	}
+	public int getMoves() {return moves;}
 	
-	public void setElementsInTheMap(ArrayList<ElementKey> elementsInTheMap) {
-		this.elementsInTheMap = elementsInTheMap;
-	}
+	public void addGame(SokobanGame game) {this.game = game;}
+	
+	public void setElementsInTheMap(ArrayList<ElementKey> elementsInTheMap) {this.elementsInTheMap = elementsInTheMap;}
 	
 	@Override
-	public String getName() {
-		return imageName;
-	}
-	
+	public String getName() {return imageName;}
 	@Override
-	public Point2D getPosition() {
-		return position;
-	}
-	
+	public Point2D getPosition() {return position;}
 	@Override
-	public int getLayer() {
-		return 3;
-	}
-	
+	public int getLayer() {return 3;}
 	@Override
-	public boolean canMove() {
-		return false;
-	}
-	
+	public boolean canMove() {return false;}
 	@Override
-	public boolean canStepOn() {
-		return false;
-	}
-
+	public boolean canStepOn() {return false;}
 	@Override
-	public ImageTile getImage() {
-		return this;
-	}
-	
+	public ImageTile getImage() {return this;}
 	@Override
-	public void objectIsOnTheHole() {
-		return;
-	}
-
+	public void objectIsOnTheHole() {return;}
 	@Override
-	public void updateElementUP(Player p) {
-		return;
-	}
-
+	public int level() {return level;}
 	@Override
-	public void updateElementDOWN(Player p) {
-		return;
-	}
-
+	public boolean canPlayerStepInsideHole() {return false;}
 	@Override
-	public void updateElementRIGHT(Player p) {
-		return;
-	}
-
+	public boolean usedBatery() {return true;}
 	@Override
-	public void updateElementLEFT(Player p) {
-		return;
-	}
-
+	public void useTheBatery() {return;}
 	@Override
-	public int level() {
-		return level;
-	}
-	
+	public boolean isBig() {return false;}
 	@Override
-	public boolean canPlayerStepInsideHole() {
-		return false;
-	}
+	public void updateElement(Direction dir) {return;}
 	@Override
-	public boolean usedBatery() {
-		return true;
+	public void activateMarioMode() {
+		imageName = "Mario_D";
+		empilhadora_D = "Mario_D";
+		empilhadora_U = "Mario_U";
+		empilhadora_R = "Mario_R";
+		empilhadora_L = "Mario_L";
 	}
-
-	@Override
-	public void useTheBatery() {
-		return;
-	}
-	
 	@Override
 	public void activateLinkMode() {
+		imageName = "Link_U";
 		empilhadora_U = "Link_U";
 		empilhadora_D = "Link_D";
 		empilhadora_L = "Link_L";
 		empilhadora_R = "Link_R";
 	}
-	@Override
-	public boolean isBig() {
-		return false;
-	}
+	public int movesDone() {return movesDone;}
 	
-	public int movesDone() {
-		return movesDone;
-	}
+	public void gotTheBatrty() {moves = 100;}
 	
-	public void gotTheBatrty() {
-		moves = 100;
-	}
-	
-	public void setName(String name){
-		imageName = name;
-	}
-	
-	public void restartLevel() {
-		if (moves == -1) {
-			game.advnceToNextLevel(level);
+	public void setName(Direction dir){
+		if(dir.asVector().getX() == 0 && dir.asVector().getY() == 1)
+			imageName = empilhadora_D;
+		else if(dir.asVector().getX() == 0&& dir.asVector().getY() == -1)
+			imageName = empilhadora_U;
+		else if(dir.asVector().getX() == 1 && dir.asVector().getY() == 0)
+			imageName = empilhadora_R;
+		else if(dir.asVector().getX() == -1 && dir.asVector().getY() == 0)
+			imageName = empilhadora_L;
 		}
-	}
+	
+	public void restartLevel() {if (moves == -1) game.advnceToNextLevel(level);}
 	
 	public void buracoHere(Point2D newPosition, ElementKey object) {
-		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) 
+		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) { 
 			for(ElementKey x: elementsInTheMap) {
 				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && !x.canPlayerStepInsideHole() && x instanceof Buraco) {
 					object.objectIsOnTheHole();
 				}
 				if ((x.canStepOn() && x.getPosition().equals(newPosition)) &&  x instanceof Buraco && object.isBig()) {
 					x.objectIsOnTheHole();
-				}
-					
+				}	
 			}
+		}
 	}
-	
+
 	private boolean moveCheck(Point2D newPosition) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) {
 			for(ElementKey x: elementsInTheMap) {
@@ -173,74 +122,12 @@ public class Player implements ImageTile, ElementKey{
 		return true;
 	}
 	
-	public void moveUp() {
-		Point2D newPosition = position.plus(new Vector2D(0, -1));
-		//Check for movableObjects
+	public void move(Direction dir) {
+		Point2D newPosition = position.plus(dir.asVector());
 		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(0, -1)))) {
-				x.updateElementUP(this);
-				buracoHere(newPosition.plus(new Vector2D(0, -1)), x);
-			}
-		}
-		ImageMatrixGUI.getInstance().update();
-		//Move Player
-		if (moveCheck(newPosition)) {
-			moves--;
-			movesDone++;
-			position = newPosition;
-		}
-		setName(empilhadora_U);
-		ImageMatrixGUI.getInstance().update();
-		restartLevel();
-	}
-	
-	public void moveDown() {
-		Point2D newPosition = position.plus(new Vector2D(0, 1));
-		//Check for movableObjects
-		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(0, 1)))) {
-				x.updateElementDOWN(this);
-				buracoHere(new Point2D(newPosition.getX(), newPosition.getY() + 1), x);
-			}
-		}
-		ImageMatrixGUI.getInstance().update();
-		if (moveCheck(newPosition)) {
-			position = newPosition;
-			moves--;
-			movesDone++;
-		}
-		setName(empilhadora_D);
-		ImageMatrixGUI.getInstance().update();
-		restartLevel();
-	}
-	
-	public void moveLeft() {
-		Point2D newPosition = position.plus(new Vector2D(-1, 0));
-		//Check for movableObjects
-		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(-1, 0)))) {
-				x.updateElementLEFT(this);
-				buracoHere(newPosition.plus(new Vector2D(-1, 0)), x);
-			}
-		}
-		ImageMatrixGUI.getInstance().update();
-		if (moveCheck(newPosition)) {
-			moves--;
-			position = newPosition;
-			movesDone++;
-		}
-		setName(empilhadora_L);
-		ImageMatrixGUI.getInstance().update();
-		restartLevel();
-	}
-	
-	public void moveRight() {
-		Point2D newPosition = position.plus(new Vector2D(1, 0));
-		//Check for movableObjectsa
-		for(ElementKey x: elementsInTheMap) {
-			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(new Vector2D(1, 0)))) {
-				x.updateElementRIGHT(this);
-				buracoHere(newPosition.plus(new Vector2D(1, 0)), x);
+			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(dir.asVector()))) {
+				x.updateElement(dir);
+				buracoHere(newPosition.plus(dir.asVector()), x);
 			}
 		}
 		ImageMatrixGUI.getInstance().update();
@@ -249,18 +136,16 @@ public class Player implements ImageTile, ElementKey{
 			movesDone++;
 			position = newPosition;
 		}
-		setName(empilhadora_R);
+	    setName(dir);
 		ImageMatrixGUI.getInstance().update();
 		restartLevel();
 	}
-	
-	public void move() {
-		Direction randomDirection = Direction.UP;
-		Point2D newPosition = position.plus(randomDirection.asVector());
-		if (newPosition.getX()>=0 && newPosition.getX()<10 && newPosition.getY()>=0 && newPosition.getY()<10 ){
-			position = newPosition;
-		}
-		ImageMatrixGUI.getInstance().update();
+
+	public void deactivateMode() {
+		imageName = "Empilhadora_D";
+		empilhadora_D = "Empilhadora_D";
+		empilhadora_U = "Empilhadora_U";
+		empilhadora_R = "Empilhadora_R";
+		empilhadora_L = "Empilhadora_L";
 	}
-	
 }

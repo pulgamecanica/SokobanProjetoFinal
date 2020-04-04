@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=Sokoban2020/\/Library\/Java\/JavaVirtualMachines\/jdk1.8.0_131.jdk\/Contents\/Home\/jre\/lib\/rt.jar&lt;javax.imageio.stream(ImageOutputStream.class[ImageOutputStream" modifiers="1537" timestamp="1489567893000"/>
-<typeInfo handle="=Sokoban2020/\/Library\/Java\/JavaVirtualMachines\/jdk1.8.0_131.jdk\/Contents\/Home\/jre\/lib\/rt.jar&lt;java.security.spec(KeySpec.class[KeySpec" modifiers="1537" timestamp="1489567893000"/>
-<typeInfo handle="=Sokoban2020/src&lt;pt.iscte.dcti.poo.sokoban.starter{KeyWords.java[KeyWords" modifiers="513" timestamp="1585269923000"/>
-<typeInfo handle="=Sokoban2020/src&lt;pt.iscte.dcti.poo.sokoban.starter{ElementKey.java[ElementKey" modifiers="513" timestamp="1585703091000"/>
-<typeInfo handle="=GraphPack_2019_2020_V1/src&lt;pt.iul.ista.poo.gui{ImageTile.java[ImageTile" modifiers="513" timestamp="1584279910000"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

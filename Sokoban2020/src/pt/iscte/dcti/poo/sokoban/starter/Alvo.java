@@ -1,6 +1,7 @@
 package pt.iscte.dcti.poo.sokoban.starter;
 
 import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
 public class Alvo implements ImageTile, ElementKey {
@@ -14,75 +15,34 @@ public class Alvo implements ImageTile, ElementKey {
 		name = "Alvo";
 	}
 	@Override
-	public String getName() {
-		return name;
-	}
-
+	public String getName() {return name;}
 	@Override
-	public Point2D getPosition() {
-		return Point2D;
-	}
-
+	public Point2D getPosition() {return Point2D;}
 	@Override
-	public int getLayer() {
-		return 1;
-	}
-
+	public int getLayer() {return 1;}
 	@Override
-	public boolean canMove() {
-		return true;
-	}
+	public boolean canMove() {return true;}
 	@Override
-	public boolean canStepOn() {
-		return true;
-	}
+	public boolean canStepOn() {return true;}
 	@Override
-	public ImageTile getImage() {
-		return this;
-	}
-
+	public ImageTile getImage() {return this;}
 	@Override
-	public void updateElementUP(Player p) {
-		return;
-	}
+	public void objectIsOnTheHole() {return;}
 	@Override
-	public void updateElementDOWN(Player p) {
-		return;
-	}
+	public int level() {return level;}
 	@Override
-	public void updateElementRIGHT(Player p) {
-		return;
-	}
+	public boolean canPlayerStepInsideHole() {return false;}
 	@Override
-	public void updateElementLEFT(Player p) {
-		return;
-	}
+	public boolean usedBatery() {return true;}
 	@Override
-	public void objectIsOnTheHole() {
-		return;
-	}
+	public void useTheBatery() {return;}
 	@Override
-	public int level() {
-		return level;
-	}
+	public void activateLinkMode() {name = "Triforce";}
 	@Override
-	public boolean canPlayerStepInsideHole() {
-		return false;
-	}
+	public boolean isBig() {return false;}
 	@Override
-	public boolean usedBatery() {
-		return true;
-	}
+	public void activateMarioMode() {name = "MarioAlvo";}
 	@Override
-	public void useTheBatery() {
-	}
-	@Override
-	public void activateLinkMode() {
-		name = "Triforce";
-	}
-	@Override
-	public boolean isBig() {
-		return false;
-	}
+	public void updateElement(Direction dir) {return;}
 
 }

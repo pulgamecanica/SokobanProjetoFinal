@@ -2,6 +2,7 @@ package pt.iscte.dcti.poo.sokoban.starter;
 
 
 import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
 public class Buraco implements ElementKey, ImageTile {
@@ -15,36 +16,33 @@ public class Buraco implements ElementKey, ImageTile {
 		this.Point2D = Point2D;
 		this.level = level;
 	}
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public Point2D getPosition() {
-		return Point2D;
-	}
-
-	@Override
-	public int getLayer() {
-		return 2;
-	}
-
-	@Override
-	public boolean canMove() {
-		return true;
-	}
 	
 	@Override
-	public boolean canStepOn() {
-		return true;
-	}
-
+	public String getName() {return name;}
 	@Override
-	public ImageTile getImage() {
-		return this;
-	}
-
+	public Point2D getPosition() {return Point2D;}
+	@Override
+	public int getLayer() {return 2;}
+	@Override
+	public boolean canMove() {return true;}
+	@Override
+	public boolean canStepOn() {return true;}
+	@Override
+	public ImageTile getImage() {return this;}
+	@Override
+	public boolean usedBatery() {return true;}
+	@Override
+	public void useTheBatery() { return;}
+	@Override
+	public void activateLinkMode() {return;}
+	@Override
+	public boolean isBig() {return false;}
+	@Override
+	public void activateMarioMode() {return;}
+	@Override
+	public void updateElement(Direction dir) {return;}
+	@Override
+	public int level() {return level;}
 	@Override
 	public void objectIsOnTheHole() {
 		System.out.println("Im HERE :D Buraco");
@@ -52,47 +50,9 @@ public class Buraco implements ElementKey, ImageTile {
 		name = "BigStoneBuraco";
 	}
 	@Override
-	public void updateElementUP(Player p) {
-
-	}
-	@Override
-	public void updateElementDOWN(Player p) {
-
-	}
-	@Override
-	public void updateElementRIGHT(Player p) {
-		
-	}
-	@Override
-	public void updateElementLEFT(Player p) {
-		
-	}
-	@Override
-	public int level() {
-		return level;
-	}
-	@Override
 	public boolean canPlayerStepInsideHole() {
 		if (bigStoneInside)
 			return true;
 		return false;
 	}
-	@Override
-	public boolean usedBatery() {
-		return true;
-	}
-	@Override
-	public void useTheBatery() {
-	
-	}
-	@Override
-	public void activateLinkMode() {
-		
-	}
-	@Override
-	public boolean isBig() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

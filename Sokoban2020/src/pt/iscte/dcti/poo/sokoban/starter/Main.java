@@ -7,6 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		createTenByTen();
 	}
+
 	public static void createTenByTen() {
 		//ImageMatrixGUI.setSize(10, 10);
 		ImageMatrixGUI.setSize(20, 20);

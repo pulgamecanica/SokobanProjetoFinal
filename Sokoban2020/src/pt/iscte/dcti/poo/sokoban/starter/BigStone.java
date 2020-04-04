@@ -4,6 +4,7 @@ package pt.iscte.dcti.poo.sokoban.starter;
 
 import pt.iul.ista.poo.gui.ImageMatrixGUI;
 import pt.iul.ista.poo.gui.ImageTile;
+import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 import pt.iul.ista.poo.utils.Vector2D;
 
@@ -20,92 +21,33 @@ public class BigStone implements ElementKey, ImageTile {
 	}
 	
 	@Override
-	public String getName() {
-		return name;
-	}
-
+	public String getName() {return name;}
 	@Override
-	public Point2D getPosition() {
-		return Point2D;
-	}
-
+	public Point2D getPosition() {return Point2D;}
 	@Override
-	public int getLayer() {
-		return 3;
-	}
-
+	public int getLayer() {return 3;}
 	@Override
-	public boolean canMove() {
-		return !canStepHere;
-	}
-
+	public boolean canMove() {return !canStepHere;}
 	@Override
-	public boolean canStepOn() {
-		return canStepHere;
-	}
-
+	public boolean canStepOn() {return canStepHere;}
 	@Override
-	public ImageTile getImage() {
-		return this;
-	}
-
+	public ImageTile getImage() {return this;}
 	@Override
-	public void objectIsOnTheHole() {
-		ImageMatrixGUI.getInstance().removeImage(this);;
-		canStepHere = true;
-	}
-
+	public void objectIsOnTheHole() {ImageMatrixGUI.getInstance().removeImage(this);;canStepHere = true;}
 	@Override
-	public void updateElementUP(Player p) {
-		Point2D = Point2D.plus(new Vector2D(0,-1));;
-	}
-
+	public int level() {return level;}
 	@Override
-	public void updateElementDOWN(Player p) {
-		Point2D = Point2D.plus(new Vector2D(0,1));;
-		
-	}
-
+	public boolean canPlayerStepInsideHole() {return false;}
 	@Override
-	public void updateElementRIGHT(Player p) {
-		Point2D = Point2D.plus(new Vector2D(1,0));;
-	}
-
+	public boolean usedBatery() {return true;}
 	@Override
-	public void updateElementLEFT(Player p) {
-		Point2D = Point2D.plus(new Vector2D(-1, 0));;
-		
-	}
-
+	public void useTheBatery() {return;}
 	@Override
-	public int level() {
-		return level;
-	}
-
+	public void activateLinkMode() {name = "TreasureChest1";}
 	@Override
-	public boolean canPlayerStepInsideHole() {
-		return false;
-	}
-
+	public boolean isBig() {return true;}
 	@Override
-	public boolean usedBatery() {
-		return true;
-	}
-
+	public void activateMarioMode() {name = "MarioBigStone";}
 	@Override
-	public void useTheBatery() {
-		
-	}
-
-	@Override
-	public void activateLinkMode() {
-		name = "TreasureChest1";
-	}
-
-	@Override
-	public boolean isBig() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
+	public void updateElement(Direction dir) {Point2D = Point2D.plus(dir.asVector());}
 }
