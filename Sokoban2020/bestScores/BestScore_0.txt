@@ -1,3 +1,4 @@
 BestScores: ************Level:0************
 1º 24 moves.
-2º 35 moves.
+2º 24 moves.
+3º 35 moves.

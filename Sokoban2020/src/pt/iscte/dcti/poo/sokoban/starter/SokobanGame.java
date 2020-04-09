@@ -61,7 +61,7 @@ public class SokobanGame implements Observer {
 	}
 	//Messages
 	private void messages() {
-		ImageMatrixGUI.getInstance().setStatusMessage("LEVEL: " + (level+1) + " ** MOVES: " + player.movesDone() + " ** ENERGY: "+ player.getMoves() + " ** BestScore: " + (bS.getTopOne()==0? "NULL":bS.getTopOne()) +  " ** >>>>'r'-->RESTART - 'n'-->NEXTLEVEL - 'b'-->BACK - 'l'-->QUITGAME ** - 'h'??? - 'm'??? <<<<");
+		ImageMatrixGUI.getInstance().setStatusMessage("LEVEL: " + (level+1) + " ** MOVES: " + player.movesDone() + " ** ENERGY: "+ player.getMoves() + " ** BestScore: " + (bS.getTopOne()==0? "NULL":bS.getTopOne()) +  " ** >>>>'r'-->RESTART - 'n'-->NEXTLEVEL - 'b'-->BACK - 'q'-->QUITGAME ** - 'h'??? - 'm'??? <<<<");
 		ImageMatrixGUI.getInstance().setName("Level: "+ (level+1));
 	}
 	//Start a level from scratch
@@ -173,43 +173,60 @@ public class SokobanGame implements Observer {
 				player.move(Direction.directionFor(lastKeyPressed));
 		}
 		// "n" next level
-		else if (lastKeyPressed == 78) {
+		else if (lastKeyPressed == KeyEvent.VK_N) {
 			if (player != null)
 				advnceToNextLevel(level + 1);
 		}
 		// "r" restart level
-		else if (lastKeyPressed == 82) {
+		else if (lastKeyPressed == KeyEvent.VK_R) {
 			if (player != null)
 				advnceToNextLevel(level);
 		}
-		// "l" quit
-		else if (lastKeyPressed == 76) {
+		// "q" quit
+		else if (lastKeyPressed == KeyEvent.VK_Q) {
 			if (player != null)
 				ImageMatrixGUI.getInstance().dispose();
 		}
 		// "b" go back
-		else if (lastKeyPressed == 66) {
+		else if (lastKeyPressed == KeyEvent.VK_B) {
 			if (player != null)
 				advnceToNextLevel(level - 1);
 		}
-		else if (lastKeyPressed == 72) {
+		// "h" activate TLOZ mode
+		else if (lastKeyPressed == KeyEvent.VK_H) {
 			if (player != null) {
 				for(ElementKey x: elementsInTheMap)
 					x.activateLinkMode();
 				player.activateLinkMode();
 			}
 		}
-		else if (lastKeyPressed == 77) {
+		// "m" activate MArio mode
+		else if (lastKeyPressed == KeyEvent.VK_M) {
 			if (player != null) {
 				for(ElementKey x: elementsInTheMap)
 					x.activateMarioMode();
 				player.activateMarioMode();
 			}
 		}
-		// 'p' Change player :D
-		else if (lastKeyPressed == 80) {
+		// "z" activate LOTRO mode
+		else if (lastKeyPressed == KeyEvent.VK_Z) {
 			if (player != null) {
+				for(ElementKey x: elementsInTheMap)
+					x.activateLOTROMode();
 				int random = (int)(Math.random() * 3) +1;
+				if (random == 1) 
+					player.activateGandalfMode();
+				if (random == 2)
+					player.activateGimliMode();
+				if (random == 3)
+					player.activateSauronMode();
+				ImageMatrixGUI.getInstance().update();
+			}
+		}
+		// 'p' Change player :D
+		else if (lastKeyPressed == KeyEvent.VK_P) {
+			if (player != null) {
+				int random = (int)(Math.random() * 6) +1;
 				System.out.println(random);
 				if (random == 1)
 					player.activateMarioMode();
@@ -217,6 +234,12 @@ public class SokobanGame implements Observer {
 					player.activateLinkMode();
 				if (random == 3)
 					player.deactivateMode();
+				if (random == 4)
+					player.activateGimliMode();
+				if (random == 5)
+					player.activateSauronMode();
+				if (random == 6)
+					player.activateGandalfMode();
 				ImageMatrixGUI.getInstance().update();
 			}
 		}

@@ -12,9 +12,10 @@ public interface ElementKey extends ImageTile {
 	void useTheBatery();
 	void objectIsOnTheHole();
 	int level();
-	void activateLinkMode();
-	void activateMarioMode();
 	void updateElement(Direction dir);
 	boolean isBig();
+	void activateLinkMode();
+	void activateMarioMode();
+	void activateLOTROMode();
 
 }

@@ -12,7 +12,6 @@ public class Caixote implements ElementKey, ImageTile {
 	private boolean canMove = true;
 	private String name = "Caixote";
 	
-	
 	public Caixote(Point2D point2D, int level){
 		this.Point2D = point2D;
 		this.level = level;
@@ -42,6 +41,8 @@ public class Caixote implements ElementKey, ImageTile {
 	public void activateLinkMode() {name = "Ganon";}
 	@Override
 	public boolean isBig() {return false;}
+	@Override
+	public void activateLOTROMode() {return;}
 	@Override
 	public void activateMarioMode() {name = "MarioBox";}
 	@Override

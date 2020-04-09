@@ -12,4 +12,5 @@
 <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="pt.iul.ista.poo.utils.Vector2D"/>
+<fullyQualifiedTypeName name="pt.iul.ista.poo.utils.Direction"/>
 </qualifiedTypeNameHistroy>

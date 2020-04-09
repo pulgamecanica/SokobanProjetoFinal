@@ -44,5 +44,7 @@ public class Alvo implements ImageTile, ElementKey {
 	public void activateMarioMode() {name = "MarioAlvo";}
 	@Override
 	public void updateElement(Direction dir) {return;}
+	@Override
+	public void activateLOTROMode() {name = "TheRing";}
 
 }

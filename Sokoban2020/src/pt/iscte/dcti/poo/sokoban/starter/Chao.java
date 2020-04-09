@@ -45,5 +45,8 @@ public class Chao implements ImageTile, ElementKey {
 	@Override
 	public void updateElement(Direction dir) {return;}
 
+	@Override
+	public void activateLOTROMode() {name = "Floor_LOTRO";}
+
 
 }

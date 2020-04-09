@@ -44,5 +44,10 @@ public class Parede implements ImageTile, ElementKey {
 	public void activateMarioMode() {name = "MarioFloor";}
 	@Override
 	public void updateElement(Direction dir) {return;}
+	@Override
+	public void activateLOTROMode() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

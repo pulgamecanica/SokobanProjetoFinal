@@ -18,7 +18,6 @@ public class Player implements ImageTile, ElementKey{
 	private int movesDone = 0;
 	private String empilhadora_D, empilhadora_U, empilhadora_R, empilhadora_L;
 
-	
 	public Player(Point2D initialPosition, int level){
 		position = initialPosition;
 		this.level = level;
@@ -75,6 +74,39 @@ public class Player implements ImageTile, ElementKey{
 		empilhadora_D = "Link_D";
 		empilhadora_L = "Link_L";
 		empilhadora_R = "Link_R";
+	}
+	@Override
+	public void activateLOTROMode() {
+		imageName = "Gandalf_U";
+		empilhadora_U = "Gandalf_U";
+		empilhadora_D = "Gandalf_D";
+		empilhadora_L = "Gandalf_R";
+		empilhadora_R = "Gandalf_L";
+		
+	}
+	public void activateSauronMode() {
+		imageName = "Sauron_D";
+		empilhadora_U = "Sauron_U";
+		empilhadora_D = "Sauron_D";
+		empilhadora_L = "Sauron_L";
+		empilhadora_R = "Sauron_R";
+		
+	}
+	public void activateGimliMode() {
+		imageName = "Gimli_U";
+		empilhadora_U = "Gimli_U";
+		empilhadora_D = "Gimli_D";
+		empilhadora_L = "Gimli_L";
+		empilhadora_R = "Gimli_R";
+		
+	}
+	public void activateGandalfMode() {
+		imageName = "Gandalf_U";
+		empilhadora_U = "Gandalf_U";
+		empilhadora_D = "Gandalf_D";
+		empilhadora_L = "Gandalf_R";
+		empilhadora_R = "Gandalf_L";
+		
 	}
 	public int movesDone() {return movesDone;}
 	
@@ -148,4 +180,5 @@ public class Player implements ImageTile, ElementKey{
 		empilhadora_R = "Empilhadora_R";
 		empilhadora_L = "Empilhadora_L";
 	}
+	
 }

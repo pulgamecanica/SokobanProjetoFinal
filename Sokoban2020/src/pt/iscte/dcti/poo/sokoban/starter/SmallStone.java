@@ -47,5 +47,8 @@ public class SmallStone implements ElementKey, ImageTile {
 	public void activateMarioMode() {name = "MarioSmallStone";}
 	@Override
 	public void updateElement(Direction dir) {Point2D = Point2D.plus(dir.asVector());}
+
+	@Override
+	public void activateLOTROMode() {name = "SmallStoneLOTRO";}
 	 
 }

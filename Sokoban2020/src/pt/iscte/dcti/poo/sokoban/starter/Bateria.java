@@ -48,4 +48,7 @@ public class Bateria implements ElementKey, ImageTile {
 	public void activateMarioMode() {	name = "MarioMushroom";}
 	@Override
 	public void updateElement(Direction dir) {return;}
+
+	@Override
+	public void activateLOTROMode() {name = "TheEYE";}
 }
