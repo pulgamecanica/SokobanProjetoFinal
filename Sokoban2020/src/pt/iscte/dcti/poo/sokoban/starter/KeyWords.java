@@ -4,5 +4,5 @@ import pt.iul.ista.poo.utils.Point2D;
 
 public interface KeyWords {
 	String getTheElementKey();
-	ElementKey createAnElement(Point2D point, int level);
+	ElementKey createAnElement(Point2D point);
 }

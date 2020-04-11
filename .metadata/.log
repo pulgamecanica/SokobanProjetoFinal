@@ -1338,3 +1338,211 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2020-04-09 10:19:36.347
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:49.380
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:51.270
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:51.441
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:51.595
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:51.900
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:52.227
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:51:52.406
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:03.721
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:03.806
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:03.884
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:03.968
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:04.053
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:04.140
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 10:55:04.224
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 11:56:06.674
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface.text 2 0 2020-04-09 11:56:07.554
+!MESSAGE 
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.TypeBinding$LocalTypeBinding cannot be cast to org.eclipse.jdt.core.dom.IVariableBinding
+	at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeFieldConstantFromTypeAST(JavadocView.java:1381)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getConstantValue(JavadocHover.java:999)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.addConstantOrDefaultValue(AbstractJavaCompletionProposal.java:640)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:599)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$2$1.run(AdditionalInfoController.java:116)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2020-04-09 12:09:53.226
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [AbstractSObject(Position2D, String) [in AbstractSObject [in [Working copy] AbstractSObject.java [in pt.iscte.dcti.poo.sokoban.starter [in src [in Sokoban2020]]]]] does not exist]
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:573)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:614)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:326)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:312)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:233)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:301)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:664)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:540)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:760)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:678)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:670)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:167)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:133)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:169)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2020-04-09 12:09:53.242
+!MESSAGE AbstractSObject(Position2D, String) [in AbstractSObject [in [Working copy] AbstractSObject.java [in pt.iscte.dcti.poo.sokoban.starter [in src [in Sokoban2020]]]]] does not exist
+!SESSION 2020-04-10 12:19:43.395 -----------------------------------------------
+eclipse.buildId=4.13.0.I20190916-1045
+java.version=1.8.0_131
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/andrehernandez/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/andrehernandez/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-04-10 12:19:54.116
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

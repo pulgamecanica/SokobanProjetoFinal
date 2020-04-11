@@ -7,31 +7,25 @@ import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class Player implements ImageTile, ElementKey{
+public class Player implements ImageTile{
 
 	private Point2D position;
 	private String imageName;
-	private int level;
-	private ArrayList<ElementKey> elementsInTheMap = new ArrayList<>();
 	private int moves = 100;
-	private SokobanGame game;
 	private int movesDone = 0;
 	private String empilhadora_D, empilhadora_U, empilhadora_R, empilhadora_L;
+	private SokobanGame game;
 
-	public Player(Point2D initialPosition, int level){
+	public Player(Point2D initialPosition, SokobanGame game){
 		position = initialPosition;
-		this.level = level;
 		imageName = "Empilhadora_D";
 		empilhadora_D = "Empilhadora_D";
 		empilhadora_U = "Empilhadora_U";
 		empilhadora_R = "Empilhadora_R";
 		empilhadora_L = "Empilhadora_L";
+		this.game = game;
 	}
 	public int getMoves() {return moves;}
-	
-	public void addGame(SokobanGame game) {this.game = game;}
-	
-	public void setElementsInTheMap(ArrayList<ElementKey> elementsInTheMap) {this.elementsInTheMap = elementsInTheMap;}
 	
 	@Override
 	public String getName() {return imageName;}
@@ -39,27 +33,8 @@ public class Player implements ImageTile, ElementKey{
 	public Point2D getPosition() {return position;}
 	@Override
 	public int getLayer() {return 3;}
-	@Override
-	public boolean canMove() {return false;}
-	@Override
-	public boolean canStepOn() {return false;}
-	@Override
-	public ImageTile getImage() {return this;}
-	@Override
-	public void objectIsOnTheHole() {return;}
-	@Override
-	public int level() {return level;}
-	@Override
-	public boolean canPlayerStepInsideHole() {return false;}
-	@Override
-	public boolean usedBatery() {return true;}
-	@Override
-	public void useTheBatery() {return;}
-	@Override
-	public boolean isBig() {return false;}
-	@Override
-	public void updateElement(Direction dir) {return;}
-	@Override
+
+	
 	public void activateMarioMode() {
 		imageName = "Mario_D";
 		empilhadora_D = "Mario_D";
@@ -67,7 +42,7 @@ public class Player implements ImageTile, ElementKey{
 		empilhadora_R = "Mario_R";
 		empilhadora_L = "Mario_L";
 	}
-	@Override
+	
 	public void activateLinkMode() {
 		imageName = "Link_U";
 		empilhadora_U = "Link_U";
@@ -75,15 +50,7 @@ public class Player implements ImageTile, ElementKey{
 		empilhadora_L = "Link_L";
 		empilhadora_R = "Link_R";
 	}
-	@Override
-	public void activateLOTROMode() {
-		imageName = "Gandalf_U";
-		empilhadora_U = "Gandalf_U";
-		empilhadora_D = "Gandalf_D";
-		empilhadora_L = "Gandalf_R";
-		empilhadora_R = "Gandalf_L";
-		
-	}
+
 	public void activateSauronMode() {
 		imageName = "Sauron_D";
 		empilhadora_U = "Sauron_U";
@@ -123,11 +90,11 @@ public class Player implements ImageTile, ElementKey{
 			imageName = empilhadora_L;
 		}
 	
-	public void restartLevel() {if (moves == -1) game.advnceToNextLevel(level);}
+	public void restartLevel() {if (moves == -1) game.advnceToNextLevel(game.getLevel());}
 	
 	public void buracoHere(Point2D newPosition, ElementKey object) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) { 
-			for(ElementKey x: elementsInTheMap) {
+			for(ElementKey x: game.getElementElementsInTheMap()) {
 				if ((x.canStepOn() && x.getPosition().equals(newPosition)) && !x.canPlayerStepInsideHole() && x instanceof Buraco) {
 					object.objectIsOnTheHole();
 				}
@@ -140,7 +107,7 @@ public class Player implements ImageTile, ElementKey{
 
 	private boolean moveCheck(Point2D newPosition) {
 		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width && newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) {
-			for(ElementKey x: elementsInTheMap) {
+			for(ElementKey x: game.getElementElementsInTheMap()) {
 				if((!x.canStepOn() && x.getPosition().equals(newPosition))) {
 					ImageMatrixGUI.getInstance().setStatusMessage("Something is on your Way!");
 					return false;
@@ -156,10 +123,10 @@ public class Player implements ImageTile, ElementKey{
 	
 	public void move(Direction dir) {
 		Point2D newPosition = position.plus(dir.asVector());
-		for(ElementKey x: elementsInTheMap) {
+		for(AbstractSObject x: game.getElementsInTheMap()) {
 			if(x.canMove() && x.getPosition().equals(newPosition) && moveCheck(newPosition.plus(dir.asVector()))) {
 				x.updateElement(dir);
-				buracoHere(newPosition.plus(dir.asVector()), x);
+				buracoHere(newPosition.plus(dir.asVector()), (ElementKey)x);
 			}
 		}
 		ImageMatrixGUI.getInstance().update();

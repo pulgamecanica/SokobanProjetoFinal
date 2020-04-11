@@ -5,34 +5,24 @@ import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Direction;
 import pt.iul.ista.poo.utils.Point2D;
 
-public class SmallStone implements ElementKey, ImageTile {
+public class SmallStone extends AbstractSObject implements ElementKey {
 
-	private Point2D Point2D;
-	private int level;
 	private boolean canStepHere = false;
-	private String name = "SmallStone";
+	private Point2D position;
 
-	public SmallStone(Point2D Point2D, int level){
-		this.Point2D = Point2D;
-		this.level = level;
+	public SmallStone(Point2D Point2D){
+		super(Point2D, "SmallStone", 2, true);
+		position = Point2D;
 	}
 	
-	@Override
-	public String getName() {return name;}
-	@Override
-	public Point2D getPosition() {return Point2D;}
-	@Override
-	public int getLayer() {return 2;}
-	@Override
-	public boolean canMove() {return true;}
+
 	@Override
 	public boolean canStepOn() {return canStepHere;}
 	@Override
 	public ImageTile getImage() {return this;}
 	@Override
 	public void objectIsOnTheHole() {ImageMatrixGUI.getInstance().removeImage(this);canStepHere = true;}
-	@Override
-	public int level() {return level;}
+
 	@Override
 	public boolean canPlayerStepInsideHole() {return false;}
 	@Override
@@ -40,15 +30,12 @@ public class SmallStone implements ElementKey, ImageTile {
 	@Override
 	public void useTheBatery() {return;}
 	@Override
-	public void activateLinkMode() {name = "TreasureChest2";}
+	public void activateLinkMode() {setName("TreasureChest2");}
 	@Override
 	public boolean isBig() {return false;}
 	@Override
-	public void activateMarioMode() {name = "MarioSmallStone";}
+	public void activateMarioMode() {setName("MarioSmallStone");}
 	@Override
-	public void updateElement(Direction dir) {Point2D = Point2D.plus(dir.asVector());}
-
-	@Override
-	public void activateLOTROMode() {name = "SmallStoneLOTRO";}
+	public void activateLOTROMode() {setName("SmallStoneLOTRO");}
 	 
 }
