@@ -1,3 +1,4 @@
 BestScores: ************Level:1************
 1º 48 moves.
-2º 56 moves.
+2º 54 moves.
+3º 56 moves.

@@ -1,6 +1,4 @@
 package pt.iscte.dcti.poo.sokoban.starter;
-
-import pt.iul.ista.poo.gui.ImageTile;
 import pt.iul.ista.poo.utils.Point2D;
 
 public enum KeyWord  implements KeyWords{
@@ -10,12 +8,6 @@ public enum KeyWord  implements KeyWords{
 		public String getTheElementKey() {return "X";}
 		@Override
 		public ElementKey createAnElement(Point2D point) {return new Alvo(point);}
-	},
-	CHAO{
-		@Override
-		public String getTheElementKey() {return " ";}
-		@Override
-		public ElementKey createAnElement(Point2D point) {return new Chao(point);}
 	},
 	BATERIA{
 		@Override
@@ -53,6 +45,4 @@ public enum KeyWord  implements KeyWords{
 		@Override
 		public ElementKey createAnElement(Point2D point) {return new SmallStone(point);}
 	}
-	
-
 }

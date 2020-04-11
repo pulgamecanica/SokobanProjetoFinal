@@ -1,10 +1,8 @@
 package pt.iscte.dcti.poo.sokoban.starter;
-
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -24,10 +22,8 @@ public class SokobanGame implements Observer {
 	private int level;
 	private BestScores bS;
 	
-	//Start the game Add all components
 	public SokobanGame(int level){
-			this.level = level;
-		//ArrayList<ImageTile> tiles = buildSampleLevel(0);
+		this.level = level;
 		ArrayList<ImageTile> tiles = buildRealLevel(level);
 		tiles.add(player);
 		ImageMatrixGUI.getInstance().addImages(tiles);
@@ -39,9 +35,7 @@ public class SokobanGame implements Observer {
 			
 		bS = new BestScores(level);
 		bS.searchFile();
-		System.out.println(bS.getTopOne());
 		messages();
-		//SET SCORES
 	}
 	public ArrayList<AbstractSObject> getElementsInTheMap(){
 		ArrayList<AbstractSObject> array =  new ArrayList<>();
@@ -49,14 +43,8 @@ public class SokobanGame implements Observer {
 			array.add((AbstractSObject)x);
 		return array;
 	}
-	public ArrayList<ElementKey> getElementElementsInTheMap(){
-		return elementsInTheMap;
-	
-	}
-	
-	public int getLevel(){
-		return level;
-	}
+	public ArrayList<ElementKey> getElementElementsInTheMap(){return elementsInTheMap;}
+	public int getLevel(){return level;}
 	//Verify If the level is completed
 	private void checkAlvosAndCaixas () {
 		int counter = 0;
@@ -64,7 +52,6 @@ public class SokobanGame implements Observer {
 			for(ImageTile y: caixas) {
 				if(x.equals(y.getPosition())) {
 					counter++;
-					System.out.println("One Caixa Done! :D");
 				}
 			}
 		if (counter == alvos.size()) {
@@ -101,7 +88,7 @@ public class SokobanGame implements Observer {
 				caixas.add(x);
 		bS = new BestScores(level);
 		bS.searchFile();
-		System.out.println(bS.getTopOne());
+		//System.out.println(bS.getTopOne());
 		messages();
 	}
 
@@ -128,15 +115,12 @@ public class SokobanGame implements Observer {
 		ArrayList<KeyWords> possibleObjects = getPossibleObjects(level);
 		String[] elements = line.split("");
 		for (int i = 0; i < elements.length; i++) {
-			ElementKey elementKey = new Chao(new Point2D (i, row));
-			ImageTile imageTile = elementKey;
-			elementsInTheMap.add(elementKey);
-			sampleLevelTiles.add(imageTile);
+			ImageTile element = new Chao(new Point2D (i, row), 0);
+			sampleLevelTiles.add(element);
 			for(KeyWords x: possibleObjects) {
 				if (elements[i].equals(x.getTheElementKey())) {
 					AbstractSObject mapElementFounded = (AbstractSObject)x.createAnElement(new Point2D(i, row));
-					ImageTile mapImageTileFounded = mapElementFounded;
-					sampleLevelTiles.add(mapImageTileFounded);
+					sampleLevelTiles.add(mapElementFounded);
 					elementsInTheMap.add((ElementKey)mapElementFounded);
 				}
 				if (elements[i].equals("E")) {
@@ -146,15 +130,12 @@ public class SokobanGame implements Observer {
 		}
 		return sampleLevelTiles;
 	}
-	
-	//List with all the objects that can Exist in the game :D
 	private ArrayList<KeyWords> getPossibleObjects(int level){
 		ArrayList<KeyWords> array2 = new ArrayList<KeyWords>();
 		for(KeyWord x: KeyWord.values())
-			array2.add((KeyWords)x);
+			array2.add(x);
 		return array2;
 	}
-	
 	private void checkForBuraco() {
 		for(ElementKey x: elementsInTheMap)
 			if(player.getPosition().equals(x.getPosition()) && x.getName().equals("Buraco") && !x.canPlayerStepInsideHole()) {
@@ -162,12 +143,26 @@ public class SokobanGame implements Observer {
 				return;
 			}
 	}
-	
+	public boolean moveCheck(Point2D newPosition) {
+		if (newPosition.getX()>=0 && newPosition.getX()<ImageMatrixGUI.getInstance().getGridDimension().width &&newPosition.getY()>=0 && newPosition.getY()<ImageMatrixGUI.getInstance().getGridDimension().height) {
+			for(ElementKey x: elementsInTheMap) {
+				if((!x.canStepOn() && x.getPosition().equals(newPosition))) {
+					ImageMatrixGUI.getInstance().setStatusMessage("Something is on your Way!");
+					return false;
+				}	
+				if(!x.usedBatery() && x.getPosition().equals(newPosition)) {
+					player.gotTheBatrty();
+					x.useTheBatery();
+				}
+			}
+		}	
+		return true;
+	}
 	@Override
 	public void update(Observed arg0) {
 		messages();
 		int lastKeyPressed = ((ImageMatrixGUI)arg0).keyPressed();
-		System.out.println("Key pressed " + lastKeyPressed);
+		//System.out.println("Key pressed " + lastKeyPressed);
 		// VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT
 		if (lastKeyPressed == KeyEvent.VK_UP || lastKeyPressed == KeyEvent.VK_DOWN || lastKeyPressed == KeyEvent.VK_LEFT || lastKeyPressed == KeyEvent.VK_RIGHT) {
 			if (player != null) 
@@ -200,6 +195,8 @@ public class SokobanGame implements Observer {
 					x.activateLinkMode();
 				player.activateLinkMode();
 			}
+			floorTiles(1);
+			ImageMatrixGUI.getInstance().update();
 		}
 		// "m" activate MArio mode
 		else if (lastKeyPressed == KeyEvent.VK_M) {
@@ -208,6 +205,8 @@ public class SokobanGame implements Observer {
 					x.activateMarioMode();
 				player.activateMarioMode();
 			}
+			floorTiles(2);
+			ImageMatrixGUI.getInstance().update();
 		}
 		// "z" activate LOTRO mode
 		else if (lastKeyPressed == KeyEvent.VK_Z) {
@@ -221,6 +220,7 @@ public class SokobanGame implements Observer {
 					player.activateGimliMode();
 				if (random == 3)
 					player.activateSauronMode();
+				floorTiles(3);
 				ImageMatrixGUI.getInstance().update();
 			}
 		}
@@ -228,7 +228,7 @@ public class SokobanGame implements Observer {
 		else if (lastKeyPressed == KeyEvent.VK_P) {
 			if (player != null) {
 				int random = (int)(Math.random() * 6) +1;
-				System.out.println(random);
+				//System.out.println(random);
 				if (random == 1)
 					player.activateMarioMode();
 				if (random == 2)
@@ -251,5 +251,13 @@ public class SokobanGame implements Observer {
 			checkForBuraco();
 		}	
 	}
-
+	public void floorTiles (int style) {
+		ArrayList<ImageTile> tiles = new ArrayList<>();
+		for(int i = 0; i < ImageMatrixGUI.getInstance().getGridDimension().getHeight(); i++) {
+			for(int j = 0; j < ImageMatrixGUI.getInstance().getGridDimension().getWidth(); j++) {
+				tiles.add(new Chao(new Point2D (i, j), style));
+			}
+		}
+		ImageMatrixGUI.getInstance().addImages(tiles);
+	}
 }
