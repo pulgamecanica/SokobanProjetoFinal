@@ -115,8 +115,8 @@ public class SokobanGame implements Observer {
 		ArrayList<KeyWords> possibleObjects = getPossibleObjects(level);
 		String[] elements = line.split("");
 		for (int i = 0; i < elements.length; i++) {
-//			ImageTile element = new Chao(new Point2D (i, row), 0);
-//			sampleLevelTiles.add(element);
+			ImageTile element = new Chao(new Point2D (i, row), 0);
+			sampleLevelTiles.add(element);
 			for(KeyWords x: possibleObjects) {
 				if (elements[i].equals(x.getTheElementKey())) {
 					AbstractSObject mapElementFounded = (AbstractSObject)x.createAnElement(new Point2D(i, row));
