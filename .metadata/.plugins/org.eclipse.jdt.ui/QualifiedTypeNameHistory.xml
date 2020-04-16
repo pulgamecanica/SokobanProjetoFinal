@@ -12,8 +12,8 @@
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="pt.iul.ista.poo.utils.Vector2D"/>
 <fullyQualifiedTypeName name="pt.iul.ista.poo.utils.Direction"/>
-<fullyQualifiedTypeName name="pt.iul.ista.poo.gui.ImageTile"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="pt.iscte.dcti.poo.sokoban.starter.SokobanGame"/>
 <fullyQualifiedTypeName name="pt.iscte.dcti.poo.sokoban.starter.AbstractSObject.MovableObjects"/>
+<fullyQualifiedTypeName name="pt.iul.ista.poo.gui.ImageTile"/>
 </qualifiedTypeNameHistroy>

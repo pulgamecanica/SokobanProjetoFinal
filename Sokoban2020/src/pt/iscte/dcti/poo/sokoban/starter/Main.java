@@ -9,7 +9,7 @@ public class Main {
 	}
 
 	public static void createTenByTen() {
-		ImageMatrixGUI.setSize(20, 20);
+		ImageMatrixGUI.setSize(10, 10);
 		SokobanGame s = new SokobanGame(0);
 		ImageMatrixGUI.getInstance().registerObserver(s);
 		ImageMatrixGUI.getInstance().go();
